@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ShapeView">
+        <attr name="shape_borderWidth" format="dimension" />
+        <attr name="shape_borderColor" format="color" />
+        <attr name="shape_type" format="enum">
+            <enum name="circle" value="0" />
+            <enum name="roundRect" value="1" />
+            <enum name="triangle" value="2" />
+        </attr>
+
+        <attr name="shape_bottomLeftRadius" format="dimension" />
+        <attr name="shape_bottomRightRadius" format="dimension" />
+        <attr name="shape_topLeftRadius" format="dimension" />
+        <attr name="shape_topRightRadius" format="dimension" />
+        <attr name="shape_radius" format="dimension" />
+        <attr name="shape_triangle_percentLeft" format="float" />
+        <attr name="shape_triangle_percentBottom" format="float" />
+        <attr name="shape_triangle_percentRight" format="float" />
+    </declare-styleable>
+</resources>
