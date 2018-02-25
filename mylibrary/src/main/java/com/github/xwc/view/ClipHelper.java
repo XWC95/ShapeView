@@ -34,4 +34,5 @@ public abstract class ClipHelper implements ClipPathCreator {
         canvas.drawPath(path, paint);
         return mask;
     }
+
 }

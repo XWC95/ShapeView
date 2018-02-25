@@ -88,7 +88,7 @@ public class View extends FrameLayout {
     }
 
     @Override
-    protected void dispatchDraw(Canvas canvas) {
+    protected void  dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         clipPaint.setXfermode(porterDuffXfermode);
         canvas.drawBitmap(mask, 0.0f, 0.0f, clipPaint);
@@ -100,4 +100,7 @@ public class View extends FrameLayout {
         this.clipHelper = clipHelper;
     }
 
+    public ClipHelper getClipHelper() {
+        return clipHelper;
+    }
 }
