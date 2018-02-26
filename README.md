@@ -7,7 +7,9 @@
 <img src="image/example.jpg" width="280px"/>
 
 ## Gradle
-
+```
+compile 'com.xwc:ShapeView:1.0.0'
+```
 
 ## Heart
 <img src="image/image1.jpg" />
