@@ -88,11 +88,11 @@ public class ShapeView extends View {
             public Path createClipPath(int width, int height) {
                 final Path path = new Path();
                 switch (shapeType) {
-                    case 0:
+                    case 0: //circle
                         //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
                         path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
                         break;
-                    case 1:
+                    case 1://roundRect
                         RectF rectF = new RectF();
                         rectF.set(0, 0, width, height);
                         if (radius > 0) {
@@ -101,13 +101,13 @@ public class ShapeView extends View {
                             path.set(generatePath(rectF, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius));
                         }
                         break;
-                    case 2:
+                    case 2://triangle
                         path.moveTo(0, percentLeft * height);
                         path.lineTo(percentBottom * width, height);
                         path.lineTo(width, percentRight * height);
                         path.close();
                         break;
-                    case 3:
+                    case 3://heart
                         path.moveTo(0.5f * width, 0.16f * height);
                         path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
                         path.moveTo(0.5f * width, height);
