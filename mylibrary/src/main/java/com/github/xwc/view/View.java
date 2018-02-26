@@ -76,12 +76,10 @@ public class View extends FrameLayout {
                 if (mask != null && !mask.isRecycled()) {
                     mask.recycle();
                 }
-
                 if (clipHelper != null) {
                     clipHelper.setUpClipPath(width, height);
                     mask = clipHelper.createMask(width, height);
                 }
-
             }
         }
         postInvalidate();
@@ -96,7 +94,7 @@ public class View extends FrameLayout {
     }
 
 
-    public void setClipPathCreator(ClipHelper clipHelper){
+    public void setClipHelper(ClipHelper clipHelper){
         this.clipHelper = clipHelper;
     }
 
