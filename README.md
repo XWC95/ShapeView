@@ -3,13 +3,15 @@
 
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-## preview
-<img src="image/example.jpg" width="280px"/>
-
 ## Gradle
 ```
 compile 'com.xwc:ShapeView:1.0.0'
 ```
+## preview
+<img src="image/example.jpg" width="280px"/>
+
+
+
 
 ## Heart
 <img src="image/image1.jpg" />
