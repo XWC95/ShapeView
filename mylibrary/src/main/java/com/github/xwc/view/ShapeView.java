@@ -154,4 +154,107 @@ public class ShapeView extends View {
     }
 
 
+    public int getBorderWidthPx() {
+        return borderWidthPx;
+    }
+
+    public void setBorderWidthPx(int borderWidthPx) {
+        this.borderWidthPx = borderWidthPx;
+    }
+
+    public int getBorderColor() {
+        return borderColor;
+    }
+
+    public void setBorderColor(int borderColor) {
+        this.borderColor = borderColor;
+    }
+
+    public int getShapeType() {
+        return shapeType;
+    }
+
+    public void setShapeType(int shapeType) {
+        this.shapeType = shapeType;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
+    public int getTopLeftRadius() {
+        return topLeftRadius;
+    }
+
+    public void setTopLeftRadius(int topLeftRadius) {
+        this.topLeftRadius = topLeftRadius;
+    }
+
+    public int getTopRightRadius() {
+        return topRightRadius;
+    }
+
+    public void setTopRightRadius(int topRightRadius) {
+        this.topRightRadius = topRightRadius;
+    }
+
+    public int getBottomRightRadius() {
+        return bottomRightRadius;
+    }
+
+    public void setBottomRightRadius(int bottomRightRadius) {
+        this.bottomRightRadius = bottomRightRadius;
+    }
+
+    public int getBottomLeftRadius() {
+        return bottomLeftRadius;
+    }
+
+    public void setBottomLeftRadius(int bottomLeftRadius) {
+        this.bottomLeftRadius = bottomLeftRadius;
+    }
+
+    public float getPercentBottom() {
+        return percentBottom;
+    }
+
+    public void setPercentBottom(float percentBottom) {
+        this.percentBottom = percentBottom;
+    }
+
+    public float getPercentLeft() {
+        return percentLeft;
+    }
+
+    public void setPercentLeft(float percentLeft) {
+        this.percentLeft = percentLeft;
+    }
+
+    public float getPercentRight() {
+        return percentRight;
+    }
+
+    public void setPercentRight(float percentRight) {
+        this.percentRight = percentRight;
+    }
+
+    public Paint getBorderPaint() {
+        return borderPaint;
+    }
+
+    public void setBorderPaint(Paint borderPaint) {
+        this.borderPaint = borderPaint;
+    }
+
+    public float getHeartRadian() {
+        return radian;
+    }
+
+    public void setHeartRadian(float radian) {
+        this.radian = radian;
+    }
 }

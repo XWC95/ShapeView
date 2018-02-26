@@ -68,169 +68,201 @@
     </com.github.xwc.view.ShapeView>
 
 
-    <!--<com.github.xwc.view.ShapeView-->
-        <!--android:id="@+id/circleShapeView2"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--android:padding="5dp"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/circleShapeView"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/heartShapeView"-->
-        <!--app:shape_circle_borderColor="@color/colorAccent"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--app:shape_circle_borderWidth="5dp">-->
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/circleShapeView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        app:layout_constraintLeft_toRightOf="@id/circleShapeView"
+        app:layout_constraintTop_toBottomOf="@id/heartShapeView"
+        app:shape_circle_borderColor="@color/colorAccent"
+        android:layout_marginLeft="10dp"
+        app:shape_circle_borderWidth="5dp">
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/image1" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image1" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="circle"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="circle"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--</com.github.xwc.view.ShapeView>-->
+    </com.github.xwc.view.ShapeView>
 
-    <!--<com.github.xwc.view.ShapeView-->
-        <!--android:id="@+id/roundRectShapeView"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/circleShapeView"-->
-        <!--app:shape_roundRect_radius="20dp"-->
-        <!--app:shape_type="roundRect">-->
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/roundRectShapeView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/roundRectShapeView"
+        app:layout_constraintTop_toBottomOf="@id/circleShapeView"
+        app:shape_roundRect_topLeftRadius="20dp"
+        app:shape_roundRect_bottomRightRadius="20dp"
+        app:shape_type="roundRect">
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/image2" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image2" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="roundRect"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="roundRect"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--</com.github.xwc.view.ShapeView>-->
+    </com.github.xwc.view.ShapeView>
+
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/roundRectShapeView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/circleShapeView"
+        app:shape_roundRect_radius="20dp"
+        app:shape_type="roundRect">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="roundRect"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.github.xwc.view.ShapeView>
+
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/triangleShapeView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"
+        app:shape_type="triangle">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="triangle"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.github.xwc.view.ShapeView>
 
 
-    <!--<com.github.xwc.view.ShapeView-->
-        <!--android:id="@+id/triangleShapeView"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--app:layout_constraintLeft_toLeftOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"-->
-        <!--app:shape_type="triangle">-->
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/triangleShapeView2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/triangleShapeView"
+        app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"
+        app:shape_triangle_percentBottom="1"
+        app:shape_triangle_percentLeft="0.5"
+        app:shape_triangle_percentRight="0"
+        app:shape_type="triangle">
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/image3" />-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image3" />
 
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="triangle"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="triangle"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <!--</com.github.xwc.view.ShapeView>-->
+    </com.github.xwc.view.ShapeView>
 
+    <com.github.xwc.view.ShapeView
+        android:id="@+id/triangleShapeView3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toRightOf="@id/triangleShapeView2"
+        app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"
+        app:shape_triangle_percentBottom="0"
+        app:shape_triangle_percentLeft="0"
+        app:shape_triangle_percentRight="0"
+        app:shape_type="triangle">
 
-    <!--<com.github.xwc.view.ShapeView-->
-        <!--android:id="@+id/triangleShapeView2"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/triangleShapeView"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"-->
-        <!--app:shape_triangle_percentBottom="1"-->
-        <!--app:shape_triangle_percentLeft="0.5"-->
-        <!--app:shape_triangle_percentRight="0"-->
-        <!--app:shape_type="triangle">-->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image3" />
 
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/image3" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="triangle"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--</com.github.xwc.view.ShapeView>-->
-
-    <!--<com.github.xwc.view.ShapeView-->
-        <!--android:id="@+id/triangleShapeView3"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginTop="10dp"-->
-        <!--app:layout_constraintLeft_toRightOf="@id/triangleShapeView2"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/roundRectShapeView"-->
-        <!--app:shape_triangle_percentBottom="0"-->
-        <!--app:shape_triangle_percentLeft="0"-->
-        <!--app:shape_triangle_percentRight="0"-->
-        <!--app:shape_type="triangle">-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:scaleType="centerCrop"-->
-            <!--android:src="@mipmap/image3" />-->
-
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginTop="30dp"-->
-            <!--android:text="triangle"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent" />-->
-    <!--</com.github.xwc.view.ShapeView>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="triangle"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.github.xwc.view.ShapeView>
 
 </android.support.constraint.ConstraintLayout>
