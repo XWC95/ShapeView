@@ -38,6 +38,8 @@ public class ShapeView extends View {
 
     private float radian = 0.2f; // radians of heart
 
+    private int sides = 4;
+    private float turn = 0.5f; //0.5 : Turn 90 °
 
     public ShapeView(@NonNull Context context) {
         super(context);
@@ -74,8 +76,13 @@ public class ShapeView extends View {
                 percentBottom = typedArray.getFloat(R.styleable.ShapeView_shape_triangle_percentBottom, percentBottom);
                 percentRight = typedArray.getFloat(R.styleable.ShapeView_shape_triangle_percentRight, percentRight);
             }
-            if(shapeType == 3){
-                radian = typedArray.getFloat(R.styleable.ShapeView_shape_heart_radian,radian);
+            if (shapeType == 3) {
+                radian = typedArray.getFloat(R.styleable.ShapeView_shape_heart_radian, radian);
+            }
+
+            if (shapeType == 4) {
+                sides = typedArray.getInteger(R.styleable.ShapeView_shape_polygon_side, sides);
+                turn = typedArray.getFloat(R.styleable.ShapeView_shape_polygon_turn,turn);
             }
 
             typedArray.recycle();
@@ -96,29 +103,28 @@ public class ShapeView extends View {
                         RectF rectF = new RectF();
                         rectF.set(0, 0, width, height);
                         if (radius > 0) {
-                            path.set(generatePath(rectF, radius, radius, radius, radius));
+                            getRoundRectPath(rectF, path, radius, radius, radius, radius);
                         } else {
-                            path.set(generatePath(rectF, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius));
+                            getRoundRectPath(rectF, path, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
                         }
                         break;
                     case 2://triangle
-                        path.moveTo(0, percentLeft * height);
-                        path.lineTo(percentBottom * width, height);
-                        path.lineTo(width, percentRight * height);
-                        path.close();
+                        getTrianglePath(path, width, height);
                         break;
                     case 3://heart
-                        path.moveTo(0.5f * width, 0.16f * height);
-                        path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
-                        path.moveTo(0.5f * width, height);
-                        path.cubicTo(width + 0.4f * width, 0.45f * height, width - 0.15f * width, -radian * height, 0.5f * width, 0.16f * height);
-                        path.close();
+                        getHeartPath(path, width, height);
+                        break;
+                    case 4: //equilateralPolygon
+                        RectF polygonRectF = new RectF();
+                        polygonRectF.set(0, 0, width, height);
+                        getPolygonPath(polygonRectF, path);
                         break;
                 }
                 return path;
             }
         });
     }
+
 
     @Override
     protected void dispatchDraw(Canvas canvas) {
@@ -131,8 +137,7 @@ public class ShapeView extends View {
         }
     }
 
-    private Path generatePath(RectF rect, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
-        final Path path = new Path();
+    private void getRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
         topLeftDiameter = topLeftDiameter < 0 ? 0 : topLeftDiameter;
         topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
         bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
@@ -149,8 +154,42 @@ public class ShapeView extends View {
         path.lineTo(rect.left, rect.top + topLeftDiameter);
         path.quadTo(rect.left, rect.top, rect.left + topLeftDiameter, rect.top);
         path.close();
+    }
 
-        return path;
+    private void getTrianglePath(Path path, int width, int height) {
+        path.moveTo(0, percentLeft * height);
+        path.lineTo(percentBottom * width, height);
+        path.lineTo(width, percentRight * height);
+        path.close();
+    }
+
+    private void getHeartPath(Path path, int width, int height) {
+        path.moveTo(0.5f * width, 0.16f * height);
+        path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
+        path.moveTo(0.5f * width, height);
+        path.cubicTo(width + 0.4f * width, 0.45f * height, width - 0.15f * width, -radian * height, 0.5f * width, 0.16f * height);
+        path.close();
+    }
+
+    private void getPolygonPath(RectF rect, Path path) {
+        if (sides < 3) {
+            return;
+        }
+        float r = (rect.right - rect.left) / 2;
+        float mX = (rect.right + rect.left) / 2;
+        float my = (rect.top + rect.bottom) / 2;
+        for (int i = 0; i <= sides; i++) {
+            // - 0.5 : Turn 90 °
+            float alpha = Double.valueOf(((2f / sides) * i - turn) * Math.PI).floatValue();
+            float nextX = mX + Double.valueOf(r * Math.cos(alpha)).floatValue();
+            float nextY = my + Double.valueOf(r * Math.sin(alpha)).floatValue();
+            if (i == 0) {
+                path.moveTo(nextX, nextY);
+            } else {
+                path.lineTo(nextX, nextY);
+            }
+        }
+
     }
 
 

@@ -47,8 +47,6 @@ public class View extends FrameLayout {
         setDrawingCacheEnabled(true);
         setLayerType(LAYER_TYPE_SOFTWARE, null); //Only works for software layers
 
-
-        //关于这个属性的意思可查看http://blog.csdn.net/wingichoy/article/details/50534175
         porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
         setWillNotDraw(false);
 

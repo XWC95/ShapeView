@@ -10,6 +10,7 @@
             <enum name="roundRect" value="1" />
             <enum name="triangle" value="2" />
             <enum name="heart" value="3" />
+            <enum name="polygon" value="4" />
         </attr>
 
         <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
@@ -24,5 +25,9 @@
 
         <attr name="shape_heart_radian" format="float" />
 
+        <attr name="shape_polygon_side" format="integer" />
+        <attr name="shape_polygon_turn" format="float"/>
+        
+        
     </declare-styleable>
 </resources>
