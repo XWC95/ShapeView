@@ -96,8 +96,7 @@ public class ShapeView extends View {
                 final Path path = new Path();
                 switch (shapeType) {
                     case 0: //circle
-                        //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
-                        path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
+                        getCirclePath(path,width,height);
                         break;
                     case 1://roundRect
                         RectF rectF = new RectF();
@@ -135,6 +134,11 @@ public class ShapeView extends View {
             canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
 
         }
+    }
+
+    private void getCirclePath(Path path,int width,int height){
+        //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
+        path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
     }
 
     private void getRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
