@@ -1,5 +1,5 @@
 # ShapView
-给任何一个View剪裁不同形状，即将推出更多形状敬请期待！！！
+给任何一个View剪裁不同形状（现已有心形，圆形，圆角矩形，三角形，正多边形），即将推出更多形状敬请期待！！！
 
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
