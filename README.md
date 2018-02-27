@@ -97,41 +97,65 @@ compile 'com.xwc:ShapeView:1.0.0'
 
 ## Code
 ```java
-    super.setClipHelper(new ClipHelper() {
-            @Override
-            public Path createClipPath(int width, int height) {
-                final Path path = new Path();
-                switch (shapeType) {
-                    case 0: //circle
-                        //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
-                        path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
-                        break;
-                    case 1://roundRect
-                        RectF rectF = new RectF();
-                        rectF.set(0, 0, width, height);
-                        if (radius > 0) {
-                            path.set(generatePath(rectF, radius, radius, radius, radius));
-                        } else {
-                            path.set(generatePath(rectF, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius));
-                        }
-                        break;
-                    case 2://triangle
-                        path.moveTo(0, percentLeft * height);
-                        path.lineTo(percentBottom * width, height);
-                        path.lineTo(width, percentRight * height);
-                        path.close();
-                        break;
-                    case 3://heart
-                        path.moveTo(0.5f * width, 0.16f * height);
-                        path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
-                        path.moveTo(0.5f * width, height);
-                        path.cubicTo(width + 0.4f * width, 0.45f * height, width - 0.15f * width, -radian * height, 0.5f * width, 0.16f * height);
-                        path.close();
-                        break;
-                }
-                return path;
+      private void getCirclePath(Path path,int width,int height){
+        //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
+        path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
+    }
+
+    private void getRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
+        topLeftDiameter = topLeftDiameter < 0 ? 0 : topLeftDiameter;
+        topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
+        bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
+        bottomRightDiameter = bottomRightDiameter < 0 ? 0 : bottomRightDiameter;
+
+        path.moveTo(rect.left + topLeftDiameter, rect.top);
+
+        path.lineTo(rect.right - topRightDiameter, rect.top);
+        path.quadTo(rect.right, rect.top, rect.right, rect.top + topRightDiameter);
+        path.lineTo(rect.right, rect.bottom - bottomRightDiameter);
+        path.quadTo(rect.right, rect.bottom, rect.right - bottomRightDiameter, rect.bottom);
+        path.lineTo(rect.left + bottomLeftDiameter, rect.bottom);
+        path.quadTo(rect.left, rect.bottom, rect.left, rect.bottom - bottomLeftDiameter);
+        path.lineTo(rect.left, rect.top + topLeftDiameter);
+        path.quadTo(rect.left, rect.top, rect.left + topLeftDiameter, rect.top);
+        path.close();
+    }
+
+    private void getTrianglePath(Path path, int width, int height) {
+        path.moveTo(0, percentLeft * height);
+        path.lineTo(percentBottom * width, height);
+        path.lineTo(width, percentRight * height);
+        path.close();
+    }
+
+    private void getHeartPath(Path path, int width, int height) {
+        path.moveTo(0.5f * width, 0.16f * height);
+        path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
+        path.moveTo(0.5f * width, height);
+        path.cubicTo(width + 0.4f * width, 0.45f * height, width - 0.15f * width, -radian * height, 0.5f * width, 0.16f * height);
+        path.close();
+    }
+
+    private void getPolygonPath(RectF rect, Path path) {
+        if (sides < 3) {
+            return;
+        }
+        float r = (rect.right - rect.left) / 2;
+        float mX = (rect.right + rect.left) / 2;
+        float my = (rect.top + rect.bottom) / 2;
+        for (int i = 0; i <= sides; i++) {
+            // - 0.5 : Turn 90 °
+            float alpha = Double.valueOf(((2f / sides) * i - turn) * Math.PI).floatValue();
+            float nextX = mX + Double.valueOf(r * Math.cos(alpha)).floatValue();
+            float nextY = my + Double.valueOf(r * Math.sin(alpha)).floatValue();
+            if (i == 0) {
+                path.moveTo(nextX, nextY);
+            } else {
+                path.lineTo(nextX, nextY);
             }
-        });
+        }
+
+    }
 ```
 
 ## <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=947017886@qq.com" >联系邮箱</a>
