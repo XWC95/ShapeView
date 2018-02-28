@@ -15,7 +15,7 @@
 
 ## Gradle
 ```
-compile 'com.xwc:ShapeView:1.0.0'
+compile 'com.xwc:ShapeView:1.1.0'
 ```
 ## preview
 <img src="image/example.jpg" width="280px"/>
