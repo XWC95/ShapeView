@@ -36,10 +36,12 @@ public class ShapeView extends View {
 
     private Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
+
     private float radian = 0.2f; // radians of heart
 
     private int sides = 4;
-    private float turn = 0.5f; //0.5 : Turn 90 °
+    private float turn = 0f; // Turn 0 °
+
 
     public ShapeView(@NonNull Context context) {
         super(context);
@@ -82,7 +84,10 @@ public class ShapeView extends View {
 
             if (shapeType == 4) {
                 sides = typedArray.getInteger(R.styleable.ShapeView_shape_polygon_side, sides);
-                turn = typedArray.getFloat(R.styleable.ShapeView_shape_polygon_turn,turn);
+                turn = typedArray.getFloat(R.styleable.ShapeView_shape_polygon_turn, turn);
+            }
+            if (shapeType == 5) {
+                turn = typedArray.getFloat(R.styleable.ShapeView_shape_star_turn, turn);
             }
 
             typedArray.recycle();
@@ -96,27 +101,30 @@ public class ShapeView extends View {
                 final Path path = new Path();
                 switch (shapeType) {
                     case 0: //circle
-                        getCirclePath(path,width,height);
+                        setCirclePath(path, width, height);
                         break;
                     case 1://roundRect
                         RectF rectF = new RectF();
                         rectF.set(0, 0, width, height);
                         if (radius > 0) {
-                            getRoundRectPath(rectF, path, radius, radius, radius, radius);
+                            setRoundRectPath(rectF, path, radius, radius, radius, radius);
                         } else {
-                            getRoundRectPath(rectF, path, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
+                            setRoundRectPath(rectF, path, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
                         }
                         break;
                     case 2://triangle
-                        getTrianglePath(path, width, height);
+                        setTrianglePath(path, width, height);
                         break;
                     case 3://heart
-                        getHeartPath(path, width, height);
+                        setHeartPath(path, width, height);
                         break;
                     case 4: //equilateralPolygon
                         RectF polygonRectF = new RectF();
                         polygonRectF.set(0, 0, width, height);
-                        getPolygonPath(polygonRectF, path);
+                        setPolygonPath(polygonRectF, path);
+                        break;
+                    case 5: //star
+                        setStarPath(path, width / 2);
                         break;
                 }
                 return path;
@@ -136,12 +144,12 @@ public class ShapeView extends View {
         }
     }
 
-    private void getCirclePath(Path path,int width,int height){
+    private void setCirclePath(Path path, int width, int height) {
         //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
         path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
     }
 
-    private void getRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
+    private void setRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
         topLeftDiameter = topLeftDiameter < 0 ? 0 : topLeftDiameter;
         topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
         bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
@@ -160,14 +168,14 @@ public class ShapeView extends View {
         path.close();
     }
 
-    private void getTrianglePath(Path path, int width, int height) {
+    private void setTrianglePath(Path path, int width, int height) {
         path.moveTo(0, percentLeft * height);
         path.lineTo(percentBottom * width, height);
         path.lineTo(width, percentRight * height);
         path.close();
     }
 
-    private void getHeartPath(Path path, int width, int height) {
+    private void setHeartPath(Path path, int width, int height) {
         path.moveTo(0.5f * width, 0.16f * height);
         path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
         path.moveTo(0.5f * width, height);
@@ -175,7 +183,7 @@ public class ShapeView extends View {
         path.close();
     }
 
-    private void getPolygonPath(RectF rect, Path path) {
+    private void setPolygonPath(RectF rect, Path path) {
         if (sides < 3) {
             return;
         }
@@ -193,7 +201,47 @@ public class ShapeView extends View {
                 path.lineTo(nextX, nextY);
             }
         }
+    }
 
+    private void setStarPath(Path path, int halfWidth) {
+        if (turn > 0) { //旋转角度大于0度
+            path.moveTo(turnX(halfWidth, 0, halfWidth * 0.73f), turnY(halfWidth, 0, halfWidth * 0.73f));
+            path.lineTo(turnX(halfWidth, halfWidth * 2f, halfWidth * 0.73f), turnY(halfWidth, halfWidth * 2f, halfWidth * 0.73f));
+            path.lineTo(turnX(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f));
+            path.lineTo(turnX(halfWidth, halfWidth, 0), turnY(halfWidth, halfWidth, 0));//A
+            path.lineTo(turnX(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f));
+        } else {
+            path.moveTo(0, halfWidth * 0.73f);
+            path.lineTo(halfWidth * 2, halfWidth * 0.73f);
+            path.lineTo(halfWidth * 0.38f, halfWidth * 1.9f);
+            path.lineTo(halfWidth, 0);
+            path.lineTo(halfWidth * 1.62f, halfWidth * 1.9f);
+        }
+        path.close();
+    }
+
+    /**
+     * X坐标围绕中心点旋转
+     *
+     * @param halfX
+     * @param x
+     * @param y
+     * @return
+     */
+    public float turnX(int halfX, float x, float y) {
+        return (float) ((x - halfX) * Math.cos(turn) + (y - halfX) * Math.sin(turn) + halfX);
+    }
+
+    /**
+     * Y坐标围绕中心点旋转
+     *
+     * @param halfX
+     * @param x
+     * @param y
+     * @return
+     */
+    public float turnY(int halfX, float x, float y) {
+        return (float) (-(x - halfX) * Math.sin(turn) + (y - halfX) * Math.cos(turn) + halfX);
     }
 
 
@@ -299,5 +347,29 @@ public class ShapeView extends View {
 
     public void setHeartRadian(float radian) {
         this.radian = radian;
+    }
+
+    public float getRadian() {
+        return radian;
+    }
+
+    public void setRadian(float radian) {
+        this.radian = radian;
+    }
+
+    public int getSides() {
+        return sides;
+    }
+
+    public void setSides(int sides) {
+        this.sides = sides;
+    }
+
+    public float getTurn() {
+        return turn;
+    }
+
+    public void setTurn(float turn) {
+        this.turn = turn;
     }
 }
