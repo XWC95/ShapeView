@@ -4,6 +4,9 @@
 
         <attr name="shape_borderColor" format="color" />
         <attr name="shape_borderWidth" format="dimension" />
+        <attr name="shape_borderDashGap" format="dimension"/>
+        <attr name="shape_borderDashWidth" format="dimension"/>
+
 
         <attr name="shape_type" format="enum">
             <enum name="circle" value="0" />

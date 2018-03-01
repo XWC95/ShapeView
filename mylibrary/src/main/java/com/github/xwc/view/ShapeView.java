@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -19,10 +20,11 @@ import android.util.AttributeSet;
 public class ShapeView extends View {
 
     private int borderWidthPx = 0;
-
     private int borderColor = Color.BLUE;
+    private int borderDashGap = 0;
+    private int borderDashWidth =0;
 
-    private int shapeType; //默认是圆形
+    private int shapeType; //default circle
 
     private int radius;
     private int topLeftRadius;
@@ -41,6 +43,7 @@ public class ShapeView extends View {
 
     private int sides = 4;
     private float turn = 0f; // Turn 0 °
+
 
 
     public ShapeView(@NonNull Context context) {
@@ -64,6 +67,8 @@ public class ShapeView extends View {
             shapeType = typedArray.getInteger(R.styleable.ShapeView_shape_type, shapeType);
             borderWidthPx = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderWidth, borderWidthPx);
             borderColor = typedArray.getColor(R.styleable.ShapeView_shape_borderColor, borderColor);
+            borderDashGap = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderDashGap, borderDashGap);
+            borderDashWidth = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderDashWidth, borderDashGap);
 
             if (shapeType == 1) {
                 radius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_radius, radius);
@@ -141,47 +146,41 @@ public class ShapeView extends View {
     @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (shapeType == 0 && borderWidthPx > 0) {
+
+        if(borderWidthPx >0){
             borderPaint.setStrokeWidth(borderWidthPx);
             borderPaint.setColor(borderColor);
-            canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
-        }
-        if (shapeType == 1 && borderWidthPx > 0) {
-            borderPaint.setStrokeWidth(borderWidthPx);
-            borderPaint.setColor(borderColor);
+            if(borderDashGap >0 && borderDashWidth>0){
+                borderPaint.setPathEffect(new DashPathEffect(new float[] { borderDashWidth, borderDashGap }, 0));
+            }
 
-            canvas.drawPath(getClipHelper().path, borderPaint);
-        }
-        if (shapeType == 2 && borderWidthPx > 0) {
-            borderPaint.setStrokeWidth(borderWidthPx);
-            borderPaint.setColor(borderColor);
-            Path path = new Path();
-            setTriangleBroadPath(path, getWidth(), getHeight());
-            canvas.drawPath(path, borderPaint);
-        }
+            switch (shapeType){
+                case 0:
+                    canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
+                    break;
+                case 1:
+                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    break;
+                case 2:
+                    Path path = new Path();
+                    setTriangleBroadPath(path, getWidth(), getHeight());
+                    canvas.drawPath(path, borderPaint);
+                    break;
+                case 3:
+                    canvas.drawPath(getClipHelper().path, borderPaint);
+        //           Path path = new Path();
+        //           setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
+        //           canvas.drawPath(path, borderPaint);
+                    break;
+                case 4:
+                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    break;
+                case 5:
+                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    break;
+            }
 
-        if (shapeType == 4 && borderWidthPx > 0) {
-            borderPaint.setStrokeWidth(borderWidthPx);
-            borderPaint.setColor(borderColor);
-            canvas.drawPath(getClipHelper().path, borderPaint);
         }
-        if (shapeType == 5 && borderWidthPx > 0) {
-            borderPaint.setStrokeWidth(borderWidthPx);
-            borderPaint.setColor(borderColor);
-            canvas.drawPath(getClipHelper().path, borderPaint);
-        }
-
-        if (shapeType == 3 && borderWidthPx > 0) {
-            borderPaint.setStrokeWidth(borderWidthPx);
-            borderPaint.setColor(borderColor);
-
-
-            canvas.drawPath(getClipHelper().path, borderPaint);
-//            Path path = new Path();
-//            setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
-//            canvas.drawPath(path, borderPaint);
-        }
-
     }
 
     private void setCirclePath(Path path, int width, int height) {
@@ -252,6 +251,7 @@ public class ShapeView extends View {
                 path.moveTo(nextX, nextY);
             } else {
                 path.lineTo(nextX, nextY);
+
             }
         }
         path.close();

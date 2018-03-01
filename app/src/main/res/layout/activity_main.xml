@@ -18,9 +18,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:shape_heart_radian="0.2"
             app:shape_type="heart">
 
             <ImageView
@@ -39,11 +37,30 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toTopOf="parent"
-            android:gravity="center"
             app:layout_constraintLeft_toRightOf="@id/heartShapeView"
             app:shape_borderWidth="5dp"
             android:padding="5dp"
-            app:shape_heart_radian="0.2"
+            app:shape_type="heart">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/image4" />
+
+    </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/heartShapeView3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/heartShapeView2"
+            app:shape_borderWidth="5dp"
+            app:shape_borderDashGap="5dp"
+            app:shape_borderDashWidth="10dp"
             app:shape_type="heart">
 
             <ImageView
@@ -105,6 +122,31 @@
 
         </com.github.xwc.view.ShapeView>
 
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/circleShapeView3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:padding="5dp"
+            app:layout_constraintLeft_toRightOf="@id/circleShapeView2"
+            app:layout_constraintTop_toBottomOf="@id/heartShapeView"
+            app:shape_borderColor="@color/colorAccent"
+            app:shape_borderDashGap="5dp"
+            app:shape_borderDashWidth="10dp"
+            app:shape_borderWidth="5dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image1" />
+
+
+        </com.github.xwc.view.ShapeView>
+
+
         <com.github.xwc.view.ShapeView
             android:id="@+id/roundRectShapeView"
             android:layout_width="70dp"
@@ -148,6 +190,29 @@
             app:layout_constraintTop_toBottomOf="@id/circleShapeView"
             app:shape_roundRect_bottomRightRadius="20dp"
             app:shape_roundRect_topLeftRadius="20dp"
+            app:shape_type="roundRect">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image2" />
+
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/roundRectShapeView3"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintLeft_toRightOf="@id/roundRectShapeView2"
+            app:layout_constraintTop_toBottomOf="@id/circleShapeView"
+            app:shape_roundRect_bottomRightRadius="20dp"
+            app:shape_roundRect_topLeftRadius="20dp"
+            app:shape_borderDashGap="10dp"
+            app:shape_borderDashWidth="10dp"
+            app:shape_borderWidth="5dp"
             app:shape_type="roundRect">
 
             <ImageView
@@ -259,25 +324,6 @@
 
         </com.github.xwc.view.ShapeView>
 
-        <com.github.xwc.view.ShapeView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:padding="5dp"
-            app:layout_constraintLeft_toRightOf="@id/polygonShapeView2"
-            app:layout_constraintTop_toBottomOf="@id/triangleShapeView"
-            app:shape_borderWidth="5dp"
-            app:shape_polygon_side="6"
-            app:shape_polygon_turn="0.3"
-            app:shape_type="polygon">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@mipmap/image7" />
-
-        </com.github.xwc.view.ShapeView>
 
         <com.github.xwc.view.ShapeView
             android:id="@+id/starShapeView"
