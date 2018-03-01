@@ -15,7 +15,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        shapeView = findViewById(R.id.heartShapeView);
+//        shapeView = findViewById(R.id.heartShapeView);
 //        shapeView.setHeartRadian(0.5f);
-//        shapeView.invalidate();
+//        shapeView.setHeartRadian(0.5f);
+//        shapeView.setHeartRa//        shapeView.invalidate();
     }
 }

@@ -62,10 +62,9 @@ public class ShapeView extends View {
         if (attrs != null) {
             final TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ShapeView);
             shapeType = typedArray.getInteger(R.styleable.ShapeView_shape_type, shapeType);
-            if (shapeType == 0) {
-                borderWidthPx = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_circle_borderWidth, borderWidthPx);
-                borderColor = typedArray.getColor(R.styleable.ShapeView_shape_circle_borderColor, borderColor);
-            }
+            borderWidthPx = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderWidth, borderWidthPx);
+            borderColor = typedArray.getColor(R.styleable.ShapeView_shape_borderColor, borderColor);
+
             if (shapeType == 1) {
                 radius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_radius, radius);
                 topLeftRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_topLeftRadius, topLeftRadius);
@@ -116,7 +115,7 @@ public class ShapeView extends View {
                         setTrianglePath(path, width, height);
                         break;
                     case 3://heart
-                        setHeartPath(path, width, height);
+                        setHeartPath(path, width , height);
                         break;
                     case 4: //equilateralPolygon
                         RectF polygonRectF = new RectF();
@@ -124,7 +123,13 @@ public class ShapeView extends View {
                         setPolygonPath(polygonRectF, path);
                         break;
                     case 5: //star
-                        setStarPath(path, width / 2);
+//                        setStarPath(path, width / 2);
+//                        float outR = width / 2f - borderWidthPx *2;
+//                        float inR = outR * sin(18) / sin(180 - 36 - 18) - borderWidthPx;
+
+                        float outR = width / 2f - borderWidthPx;
+                        float inR = outR * sin(18) / sin(180 - 36 - 18) - borderWidthPx;
+                        getCompletePath(path, outR, inR);
                         break;
                 }
                 return path;
@@ -140,8 +145,43 @@ public class ShapeView extends View {
             borderPaint.setStrokeWidth(borderWidthPx);
             borderPaint.setColor(borderColor);
             canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
-
         }
+        if (shapeType == 1 && borderWidthPx > 0) {
+            borderPaint.setStrokeWidth(borderWidthPx);
+            borderPaint.setColor(borderColor);
+
+            canvas.drawPath(getClipHelper().path, borderPaint);
+        }
+        if (shapeType == 2 && borderWidthPx > 0) {
+            borderPaint.setStrokeWidth(borderWidthPx);
+            borderPaint.setColor(borderColor);
+            Path path = new Path();
+            setTriangleBroadPath(path, getWidth(), getHeight());
+            canvas.drawPath(path, borderPaint);
+        }
+
+        if (shapeType == 4 && borderWidthPx > 0) {
+            borderPaint.setStrokeWidth(borderWidthPx);
+            borderPaint.setColor(borderColor);
+            canvas.drawPath(getClipHelper().path, borderPaint);
+        }
+        if (shapeType == 5 && borderWidthPx > 0) {
+            borderPaint.setStrokeWidth(borderWidthPx);
+            borderPaint.setColor(borderColor);
+            canvas.drawPath(getClipHelper().path, borderPaint);
+        }
+
+        if (shapeType == 3 && borderWidthPx > 0) {
+            borderPaint.setStrokeWidth(borderWidthPx);
+            borderPaint.setColor(borderColor);
+
+
+            canvas.drawPath(getClipHelper().path, borderPaint);
+//            Path path = new Path();
+//            setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
+//            canvas.drawPath(path, borderPaint);
+        }
+
     }
 
     private void setCirclePath(Path path, int width, int height) {
@@ -154,40 +194,53 @@ public class ShapeView extends View {
         topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
         bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
         bottomRightDiameter = bottomRightDiameter < 0 ? 0 : bottomRightDiameter;
+        float borderWidth = borderWidthPx / 2;
+        path.moveTo(rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
 
-        path.moveTo(rect.left + topLeftDiameter, rect.top);
+        path.lineTo(rect.right - topRightDiameter - borderWidth, rect.top + borderWidth);
+        path.quadTo(rect.right - borderWidth, rect.top + borderWidth, rect.right - borderWidth, rect.top + topRightDiameter + borderWidth);
+        path.lineTo(rect.right - borderWidth, rect.bottom - bottomRightDiameter - borderWidth);
+        path.quadTo(rect.right - borderWidth, rect.bottom - borderWidth, rect.right - bottomRightDiameter - borderWidth, rect.bottom - borderWidth);
+        path.lineTo(rect.left + bottomLeftDiameter + borderWidth, rect.bottom - borderWidth);
+        path.quadTo(rect.left + borderWidth, rect.bottom - borderWidth, rect.left + borderWidth, rect.bottom - bottomLeftDiameter - borderWidth);
+        path.lineTo(rect.left + borderWidth, rect.top + topLeftDiameter + borderWidth);
+        path.quadTo(rect.left + borderWidth, rect.top + borderWidth, rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
+        path.close();
+    }
 
-        path.lineTo(rect.right - topRightDiameter, rect.top);
-        path.quadTo(rect.right, rect.top, rect.right, rect.top + topRightDiameter);
-        path.lineTo(rect.right, rect.bottom - bottomRightDiameter);
-        path.quadTo(rect.right, rect.bottom, rect.right - bottomRightDiameter, rect.bottom);
-        path.lineTo(rect.left + bottomLeftDiameter, rect.bottom);
-        path.quadTo(rect.left, rect.bottom, rect.left, rect.bottom - bottomLeftDiameter);
-        path.lineTo(rect.left, rect.top + topLeftDiameter);
-        path.quadTo(rect.left, rect.top, rect.left + topLeftDiameter, rect.top);
+
+    private void setTriangleBroadPath(Path path, int width, int height) {
+        float borderWidth = borderWidthPx;
+        path.moveTo(0 + borderWidth, percentLeft * height + borderWidth / 2);
+        path.lineTo(percentBottom * width - borderWidth / 2, height - borderWidth);
+        path.lineTo(width - borderWidth, percentRight * height + borderWidth / 2);
         path.close();
     }
 
     private void setTrianglePath(Path path, int width, int height) {
-        path.moveTo(0, percentLeft * height);
-        path.lineTo(percentBottom * width, height);
-        path.lineTo(width, percentRight * height);
+        float borderWidth = borderWidthPx / 2;
+        path.moveTo(0 + borderWidth, percentLeft * height + borderWidth);
+        path.lineTo(percentBottom * width - borderWidth, height - borderWidth);
+        path.lineTo(width - borderWidth, percentRight * height + borderWidth);
         path.close();
     }
 
+
     private void setHeartPath(Path path, int width, int height) {
-        path.moveTo(0.5f * width, 0.16f * height);
-        path.cubicTo(0.15f * width, -radian * height, -0.4f * width, 0.45f * height, 0.5f * width, height);
-        path.moveTo(0.5f * width, height);
-        path.cubicTo(width + 0.4f * width, 0.45f * height, width - 0.15f * width, -radian * height, 0.5f * width, 0.16f * height);
+        int borderWidth = borderWidthPx / 2;
+        path.moveTo(0.5f * width, 0.16f * height + borderWidth);
+        path.cubicTo(0.15f * width +borderWidth, -radian * height +borderWidth, -0.4f * width + borderWidth, 0.45f * height +borderWidth, 0.5f * width, height - borderWidth);
+//        path.moveTo(0.5f * width, height);
+        path.cubicTo(width + 0.4f * width -borderWidth, 0.45f * height +borderWidth, width - 0.15f * width -borderWidth , -radian * height +borderWidth, 0.5f * width, 0.16f * height + borderWidth);
         path.close();
     }
+
 
     private void setPolygonPath(RectF rect, Path path) {
         if (sides < 3) {
             return;
         }
-        float r = (rect.right - rect.left) / 2;
+        float r = (rect.right - rect.left) / 2 - borderWidthPx;
         float mX = (rect.right + rect.left) / 2;
         float my = (rect.top + rect.bottom) / 2;
         for (int i = 0; i <= sides; i++) {
@@ -201,6 +254,7 @@ public class ShapeView extends View {
                 path.lineTo(nextX, nextY);
             }
         }
+        path.close();
     }
 
     private void setStarPath(Path path, int halfWidth) {
@@ -219,6 +273,80 @@ public class ShapeView extends View {
         }
         path.close();
     }
+
+
+    private void getCompletePath(Path path, float outR, float inR) {
+
+//        path.moveTo(outR * cos(72 * 0) + outR, outR * sin(72 * 0) + outR);
+//
+//        path.moveTo(outR * cos(72 * 0) + outR, outR * sin(72 * 0) + outR);
+//        path.lineTo(inR * cos(72 * 0 + 36) + outR, inR * sin(72 * 0 + 36) + outR);
+//        path.lineTo(outR * cos(72 * 1) + outR, outR * sin(72 * 1) + outR);
+//        path.lineTo(inR * cos(72 * 1 + 36) + outR, inR * sin(72 * 1 + 36) + outR);
+//        path.lineTo(outR * cos(72 * 2) + outR, outR * sin(72 * 2) + outR);
+//        path.lineTo(inR * cos(72 * 2 + 36) + outR, inR * sin(72 * 2 + 36) + outR);
+//        path.lineTo(outR * cos(72 * 3) + outR, outR * sin(72 * 3) + outR);
+//        path.lineTo(inR * cos(72 * 3 + 36) + outR, inR * sin(72 * 3 + 36) + outR);
+//        path.lineTo(outR * cos(72 * 4) + outR, outR * sin(72 * 4) + outR);
+//        path.lineTo(inR * cos(72 * 4 + 36) + outR, inR * sin(72 * 4 + 36) + outR);
+//        path.close();
+
+
+        float radius = outR;
+        float radian = degree2Radian(36);// 36为五角星的角度
+        float radius_in = (float) (radius * Math.sin(radian / 2) / Math
+                .cos(radian)); // 中间五边形的半径
+
+        path.moveTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), borderWidthPx);// 此点为多边形的起点
+        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
+                        * Math.sin(radian) + borderWidthPx),
+                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(radian / 2) * 2 + borderWidthPx),
+                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
+                        * Math.cos(radian / 2) + borderWidthPx),
+                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
+        path.lineTo(
+                (float) (radius * Math.cos(radian / 2) + radius
+                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
+                        * Math.cos(radian) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), radius + radius_in + borderWidthPx);
+        path.lineTo(
+                (float) (radius * Math.cos(radian / 2) - radius
+                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
+                        * Math.cos(radian) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
+                        * Math.cos(radian / 2) + borderWidthPx),
+                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
+        path.lineTo(borderWidthPx, (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
+                        * Math.sin(radian) + borderWidthPx),
+                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
+
+        path.close();
+
+    }
+
+
+    /**
+     * 角度转弧度公式
+     *
+     * @param degree
+     * @return
+     */
+    private float degree2Radian(int degree) {
+        // TODO Auto-generated method stub
+        return (float) (Math.PI * degree / 180);
+    }
+
+    float cos(int num) {
+        return (float) Math.cos(num * Math.PI / 180);
+    }
+
+    float sin(int num) {
+        return (float) Math.sin(num * Math.PI / 180);
+    }
+
 
     /**
      * X坐标围绕中心点旋转

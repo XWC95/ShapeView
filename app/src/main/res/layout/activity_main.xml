@@ -10,12 +10,15 @@
         android:layout_height="match_parent"
         tools:context="com.github.xwc.example.MainActivity">
 
+
         <com.github.xwc.view.ShapeView
             android:id="@+id/heartShapeView"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
             app:layout_constraintLeft_toLeftOf="parent"
             app:shape_heart_radian="0.2"
             app:shape_type="heart">
@@ -26,18 +29,28 @@
                 android:scaleType="centerCrop"
                 android:src="@mipmap/image4" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:text="heart"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        </com.github.xwc.view.ShapeView>
+
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/heartShapeView2"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center"
+            app:layout_constraintLeft_toRightOf="@id/heartShapeView"
+            app:shape_borderWidth="5dp"
+            android:padding="5dp"
+            app:shape_heart_radian="0.2"
+            app:shape_type="heart">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image4" />
 
         </com.github.xwc.view.ShapeView>
 
@@ -60,7 +73,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 android:text="circle"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -81,8 +93,8 @@
             android:padding="5dp"
             app:layout_constraintLeft_toRightOf="@id/circleShapeView"
             app:layout_constraintTop_toBottomOf="@id/heartShapeView"
-            app:shape_circle_borderColor="@color/colorAccent"
-            app:shape_circle_borderWidth="5dp">
+            app:shape_borderColor="@color/colorAccent"
+            app:shape_borderWidth="5dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -99,8 +111,10 @@
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/circleShapeView"
+            app:shape_borderWidth="5dp"
             app:shape_roundRect_radius="20dp"
             app:shape_type="roundRect">
 
@@ -114,7 +128,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
                 android:text="roundRect"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -221,19 +234,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
+                android:background="@mipmap/image7" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="polygon"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </com.github.xwc.view.ShapeView>
 
 
@@ -243,15 +245,17 @@
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             app:layout_constraintLeft_toRightOf="@id/polygonShapeView"
             app:layout_constraintTop_toBottomOf="@id/triangleShapeView"
+            app:shape_borderWidth="5dp"
             app:shape_polygon_side="6"
             app:shape_type="polygon">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
+                android:background="@mipmap/image7" />
 
         </com.github.xwc.view.ShapeView>
 
@@ -260,8 +264,10 @@
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             app:layout_constraintLeft_toRightOf="@id/polygonShapeView2"
             app:layout_constraintTop_toBottomOf="@id/triangleShapeView"
+            app:shape_borderWidth="5dp"
             app:shape_polygon_side="6"
             app:shape_polygon_turn="0.3"
             app:shape_type="polygon">
@@ -269,7 +275,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
+                android:background="@mipmap/image7" />
 
         </com.github.xwc.view.ShapeView>
 
@@ -286,19 +292,8 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark" />
+                android:src="@mipmap/image8" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="Star"
-                android:textColor="@android:color/black"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
         </com.github.xwc.view.ShapeView>
 
 
@@ -308,18 +303,19 @@
             android:layout_height="70dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
+            android:padding="5dp"
             app:layout_constraintLeft_toRightOf="@id/starShapeView"
             app:layout_constraintTop_toBottomOf="@id/polygonShapeView"
+            app:shape_borderWidth="5dp"
             app:shape_star_turn="0.5"
             app:shape_type="star">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark" />
+                android:src="@mipmap/image8" />
 
         </com.github.xwc.view.ShapeView>
-
 
 
     </android.support.constraint.ConstraintLayout>

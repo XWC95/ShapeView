@@ -19,7 +19,7 @@ import android.widget.FrameLayout;
 public class View extends FrameLayout {
 
 
-    private final Paint clipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+    protected final Paint clipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     protected PorterDuffXfermode porterDuffXfermode;
     protected Bitmap mask;
 

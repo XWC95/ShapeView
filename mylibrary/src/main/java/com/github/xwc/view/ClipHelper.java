@@ -35,4 +35,5 @@ public abstract class ClipHelper implements ClipPathCreator {
         return mask;
     }
 
+
 }
