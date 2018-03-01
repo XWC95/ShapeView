@@ -3,9 +3,19 @@
 
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
+
+ ## APK文件
+
+扫描二维码 或者 点击二维码 下载
+
+[![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
+
+
+
+
 ## Gradle
 ```
-compile 'com.xwc:ShapeView:1.0.0'
+compile 'com.xwc:ShapeView:1.1.0'
 ```
 ## preview
 <img src="image/example.jpg" width="280px"/>
@@ -96,7 +106,7 @@ compile 'com.xwc:ShapeView:1.0.0'
 ```
 
 ## EquilateralPolygon
-<img src="image/image5.jpg" />
+<img src="image/image5.png" />
 
 ```xml
 <com.github.xwc.view.ShapeView
@@ -115,7 +125,7 @@ compile 'com.xwc:ShapeView:1.0.0'
 ```
 
 ## Star
-<img src="image/image6.jpg" />
+<img src="image/image6.png" />
 
 ```xml
 <com.github.xwc.view.ShapeView
@@ -199,6 +209,9 @@ compile 'com.xwc:ShapeView:1.0.0'
 
     }
 ```
+
+
+
 
 ### <a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=947017886@qq.com" >联系邮箱</a>
 
