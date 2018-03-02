@@ -4,8 +4,8 @@
 
         <attr name="shape_borderColor" format="color" />
         <attr name="shape_borderWidth" format="dimension" />
-        <attr name="shape_borderDashGap" format="dimension"/>
-        <attr name="shape_borderDashWidth" format="dimension"/>
+        <attr name="shape_borderDashGap" format="dimension" />
+        <attr name="shape_borderDashWidth" format="dimension" />
 
 
         <attr name="shape_type" format="enum">
@@ -15,6 +15,7 @@
             <enum name="heart" value="3" />
             <enum name="polygon" value="4" />
             <enum name="star" value="5" />
+            <enum name="diagonal" value="6" />
         </attr>
 
         <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
@@ -33,6 +34,20 @@
         <attr name="shape_polygon_turn" format="float" />
 
         <attr name="shape_star_turn" format="float" />
+
+
+        <attr name="shape_diagonal_direction" format="enum">
+            <enum name="left" value="1"/>
+            <enum name="right" value="2"/>
+        </attr>
+        <attr name="shape_diagonal_position" format="enum">
+            <enum name="bottom" value="1"/>
+            <enum name="top" value="2"/>
+            <enum name="left" value="3"/>
+            <enum name="right" value="4"/>
+        </attr>
+        <attr name="shape_diagonal_angle" format="integer"/>
+
 
     </declare-styleable>
 </resources>

@@ -20,11 +20,20 @@ import android.util.AttributeSet;
 public class ShapeView extends View {
 
     private int borderWidthPx = 0;
-    private int borderColor = Color.BLUE;
+    private int borderColor = Color.parseColor("#F66276");
     private int borderDashGap = 0;
-    private int borderDashWidth =0;
+    private int borderDashWidth = 0;
 
     private int shapeType; //default circle
+
+    public static final int CIRCLE = 0;
+    public static final int ROUND_RECT = 1;
+    public static final int TRIANGLE = 2;
+    public static final int HEART = 3;
+    public static final int POLYGON = 4;
+    public static final int STAR = 5;
+    public static final int DIAGONAL = 6;
+
 
     private int radius;
     private int topLeftRadius;
@@ -45,8 +54,21 @@ public class ShapeView extends View {
     private float turn = 0f; // Turn 0 °
 
 
+    //diagonal
+    public static final int POSITION_BOTTOM = 1;
+    public static final int POSITION_TOP = 2;
+    public static final int POSITION_LEFT = 3;
+    public static final int POSITION_RIGHT = 4;
+    public static final int DIRECTION_LEFT = 1;
+    public static final int DIRECTION_RIGHT = 2;
+
+    private int diagonalPosition = POSITION_TOP;
+    private int diagonalDirection = DIRECTION_LEFT;
+    private int diagonalAngle = 0;
+
 
     public ShapeView(@NonNull Context context) {
+
         super(context);
         init(context, null);
     }
@@ -93,50 +115,23 @@ public class ShapeView extends View {
             if (shapeType == 5) {
                 turn = typedArray.getFloat(R.styleable.ShapeView_shape_star_turn, turn);
             }
+            if (shapeType == 6) {
+                diagonalAngle = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_angle, diagonalAngle);
+                diagonalDirection = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_direction, diagonalDirection);
+                diagonalPosition = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_position, diagonalPosition);
+            }
+
 
             typedArray.recycle();
         }
         borderPaint.setAntiAlias(true);
         borderPaint.setStyle(Paint.Style.STROKE);
 
-        super.setClipHelper(new ClipHelper() {
+        super.setClipHelper(new ClipHelper(this) {
             @Override
             public Path createClipPath(int width, int height) {
                 final Path path = new Path();
-                switch (shapeType) {
-                    case 0: //circle
-                        setCirclePath(path, width, height);
-                        break;
-                    case 1://roundRect
-                        RectF rectF = new RectF();
-                        rectF.set(0, 0, width, height);
-                        if (radius > 0) {
-                            setRoundRectPath(rectF, path, radius, radius, radius, radius);
-                        } else {
-                            setRoundRectPath(rectF, path, topLeftRadius, topRightRadius, bottomRightRadius, bottomLeftRadius);
-                        }
-                        break;
-                    case 2://triangle
-                        setTrianglePath(path, width, height);
-                        break;
-                    case 3://heart
-                        setHeartPath(path, width , height);
-                        break;
-                    case 4: //equilateralPolygon
-                        RectF polygonRectF = new RectF();
-                        polygonRectF.set(0, 0, width, height);
-                        setPolygonPath(polygonRectF, path);
-                        break;
-                    case 5: //star
-//                        setStarPath(path, width / 2);
-//                        float outR = width / 2f - borderWidthPx *2;
-//                        float inR = outR * sin(18) / sin(180 - 36 - 18) - borderWidthPx;
-
-                        float outR = width / 2f - borderWidthPx;
-                        float inR = outR * sin(18) / sin(180 - 36 - 18) - borderWidthPx;
-                        getCompletePath(path, outR, inR);
-                        break;
-                }
+                setClipPath(path, shapeType, width, height);
                 return path;
             }
         });
@@ -147,30 +142,30 @@ public class ShapeView extends View {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if(borderWidthPx >0){
+        if (borderWidthPx > 0) {
             borderPaint.setStrokeWidth(borderWidthPx);
             borderPaint.setColor(borderColor);
-            if(borderDashGap >0 && borderDashWidth>0){
-                borderPaint.setPathEffect(new DashPathEffect(new float[] { borderDashWidth, borderDashGap }, 0));
+            if (borderDashGap > 0 && borderDashWidth > 0) {
+                borderPaint.setPathEffect(new DashPathEffect(new float[]{borderDashWidth, borderDashGap}, 0));
             }
 
-            switch (shapeType){
+            switch (shapeType) {
                 case 0:
                     canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
                     break;
                 case 1:
                     canvas.drawPath(getClipHelper().path, borderPaint);
                     break;
-                case 2:
-                    Path path = new Path();
-                    setTriangleBroadPath(path, getWidth(), getHeight());
-                    canvas.drawPath(path, borderPaint);
-                    break;
+//                case 2:
+//                    Path path = new Path();
+//                    setTriangleBroadPath(path, getWidth(), getHeight());
+//                    canvas.drawPath(path, borderPaint);
+//                    break;
                 case 3:
                     canvas.drawPath(getClipHelper().path, borderPaint);
-        //           Path path = new Path();
-        //           setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
-        //           canvas.drawPath(path, borderPaint);
+                    //Path path = new Path();
+                    //setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
+                    //canvas.drawPath(path, borderPaint);
                     break;
                 case 4:
                     canvas.drawPath(getClipHelper().path, borderPaint);
@@ -178,199 +173,31 @@ public class ShapeView extends View {
                 case 5:
                     canvas.drawPath(getClipHelper().path, borderPaint);
                     break;
+//                case 6:
+//                    canvas.drawPath(getClipHelper().path, borderPaint);
+//                    break;
             }
 
         }
     }
 
-    private void setCirclePath(Path path, int width, int height) {
-        //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
-        path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
-    }
 
-    private void setRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
-        topLeftDiameter = topLeftDiameter < 0 ? 0 : topLeftDiameter;
-        topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
-        bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
-        bottomRightDiameter = bottomRightDiameter < 0 ? 0 : bottomRightDiameter;
-        float borderWidth = borderWidthPx / 2;
-        path.moveTo(rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
-
-        path.lineTo(rect.right - topRightDiameter - borderWidth, rect.top + borderWidth);
-        path.quadTo(rect.right - borderWidth, rect.top + borderWidth, rect.right - borderWidth, rect.top + topRightDiameter + borderWidth);
-        path.lineTo(rect.right - borderWidth, rect.bottom - bottomRightDiameter - borderWidth);
-        path.quadTo(rect.right - borderWidth, rect.bottom - borderWidth, rect.right - bottomRightDiameter - borderWidth, rect.bottom - borderWidth);
-        path.lineTo(rect.left + bottomLeftDiameter + borderWidth, rect.bottom - borderWidth);
-        path.quadTo(rect.left + borderWidth, rect.bottom - borderWidth, rect.left + borderWidth, rect.bottom - bottomLeftDiameter - borderWidth);
-        path.lineTo(rect.left + borderWidth, rect.top + topLeftDiameter + borderWidth);
-        path.quadTo(rect.left + borderWidth, rect.top + borderWidth, rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
-        path.close();
-    }
-
-
-    private void setTriangleBroadPath(Path path, int width, int height) {
-        float borderWidth = borderWidthPx;
-        path.moveTo(0 + borderWidth, percentLeft * height + borderWidth / 2);
-        path.lineTo(percentBottom * width - borderWidth / 2, height - borderWidth);
-        path.lineTo(width - borderWidth, percentRight * height + borderWidth / 2);
-        path.close();
-    }
-
-    private void setTrianglePath(Path path, int width, int height) {
-        float borderWidth = borderWidthPx / 2;
-        path.moveTo(0 + borderWidth, percentLeft * height + borderWidth);
-        path.lineTo(percentBottom * width - borderWidth, height - borderWidth);
-        path.lineTo(width - borderWidth, percentRight * height + borderWidth);
-        path.close();
-    }
-
-
-    private void setHeartPath(Path path, int width, int height) {
-        int borderWidth = borderWidthPx / 2;
-        path.moveTo(0.5f * width, 0.16f * height + borderWidth);
-        path.cubicTo(0.15f * width +borderWidth, -radian * height +borderWidth, -0.4f * width + borderWidth, 0.45f * height +borderWidth, 0.5f * width, height - borderWidth);
-//        path.moveTo(0.5f * width, height);
-        path.cubicTo(width + 0.4f * width -borderWidth, 0.45f * height +borderWidth, width - 0.15f * width -borderWidth , -radian * height +borderWidth, 0.5f * width, 0.16f * height + borderWidth);
-        path.close();
-    }
-
-
-    private void setPolygonPath(RectF rect, Path path) {
-        if (sides < 3) {
-            return;
-        }
-        float r = (rect.right - rect.left) / 2 - borderWidthPx;
-        float mX = (rect.right + rect.left) / 2;
-        float my = (rect.top + rect.bottom) / 2;
-        for (int i = 0; i <= sides; i++) {
-            // - 0.5 : Turn 90 °
-            float alpha = Double.valueOf(((2f / sides) * i - turn) * Math.PI).floatValue();
-            float nextX = mX + Double.valueOf(r * Math.cos(alpha)).floatValue();
-            float nextY = my + Double.valueOf(r * Math.sin(alpha)).floatValue();
-            if (i == 0) {
-                path.moveTo(nextX, nextY);
-            } else {
-                path.lineTo(nextX, nextY);
-
-            }
-        }
-        path.close();
-    }
-
-    private void setStarPath(Path path, int halfWidth) {
-        if (turn > 0) { //旋转角度大于0度
-            path.moveTo(turnX(halfWidth, 0, halfWidth * 0.73f), turnY(halfWidth, 0, halfWidth * 0.73f));
-            path.lineTo(turnX(halfWidth, halfWidth * 2f, halfWidth * 0.73f), turnY(halfWidth, halfWidth * 2f, halfWidth * 0.73f));
-            path.lineTo(turnX(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f));
-            path.lineTo(turnX(halfWidth, halfWidth, 0), turnY(halfWidth, halfWidth, 0));//A
-            path.lineTo(turnX(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f));
-        } else {
-            path.moveTo(0, halfWidth * 0.73f);
-            path.lineTo(halfWidth * 2, halfWidth * 0.73f);
-            path.lineTo(halfWidth * 0.38f, halfWidth * 1.9f);
-            path.lineTo(halfWidth, 0);
-            path.lineTo(halfWidth * 1.62f, halfWidth * 1.9f);
-        }
-        path.close();
-    }
-
-
-    private void getCompletePath(Path path, float outR, float inR) {
-
-//        path.moveTo(outR * cos(72 * 0) + outR, outR * sin(72 * 0) + outR);
-//
-//        path.moveTo(outR * cos(72 * 0) + outR, outR * sin(72 * 0) + outR);
-//        path.lineTo(inR * cos(72 * 0 + 36) + outR, inR * sin(72 * 0 + 36) + outR);
-//        path.lineTo(outR * cos(72 * 1) + outR, outR * sin(72 * 1) + outR);
-//        path.lineTo(inR * cos(72 * 1 + 36) + outR, inR * sin(72 * 1 + 36) + outR);
-//        path.lineTo(outR * cos(72 * 2) + outR, outR * sin(72 * 2) + outR);
-//        path.lineTo(inR * cos(72 * 2 + 36) + outR, inR * sin(72 * 2 + 36) + outR);
-//        path.lineTo(outR * cos(72 * 3) + outR, outR * sin(72 * 3) + outR);
-//        path.lineTo(inR * cos(72 * 3 + 36) + outR, inR * sin(72 * 3 + 36) + outR);
-//        path.lineTo(outR * cos(72 * 4) + outR, outR * sin(72 * 4) + outR);
-//        path.lineTo(inR * cos(72 * 4 + 36) + outR, inR * sin(72 * 4 + 36) + outR);
+//    private void setStarPath(Path path, int halfWidth) {
+//        if (turn > 0) { //旋转角度大于0度
+//            path.moveTo(turnX(halfWidth, 0, halfWidth * 0.73f), turnY(halfWidth, 0, halfWidth * 0.73f));
+//            path.lineTo(turnX(halfWidth, halfWidth * 2f, halfWidth * 0.73f), turnY(halfWidth, halfWidth * 2f, halfWidth * 0.73f));
+//            path.lineTo(turnX(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f));
+//            path.lineTo(turnX(halfWidth, halfWidth, 0), turnY(halfWidth, halfWidth, 0));//A
+//            path.lineTo(turnX(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f));
+//        } else {
+//            path.moveTo(0, halfWidth * 0.73f);
+//            path.lineTo(halfWidth * 2, halfWidth * 0.73f);
+//            path.lineTo(halfWidth * 0.38f, halfWidth * 1.9f);
+//            path.lineTo(halfWidth, 0);
+//            path.lineTo(halfWidth * 1.62f, halfWidth * 1.9f);
+//        }
 //        path.close();
-
-
-        float radius = outR;
-        float radian = degree2Radian(36);// 36为五角星的角度
-        float radius_in = (float) (radius * Math.sin(radian / 2) / Math
-                .cos(radian)); // 中间五边形的半径
-
-        path.moveTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), borderWidthPx);// 此点为多边形的起点
-        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
-                        * Math.sin(radian) + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) * 2 + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
-                        * Math.cos(radian / 2) + borderWidthPx),
-                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo(
-                (float) (radius * Math.cos(radian / 2) + radius
-                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
-                        * Math.cos(radian) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), radius + radius_in + borderWidthPx);
-        path.lineTo(
-                (float) (radius * Math.cos(radian / 2) - radius
-                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
-                        * Math.cos(radian) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
-                        * Math.cos(radian / 2) + borderWidthPx),
-                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo(borderWidthPx, (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
-                        * Math.sin(radian) + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-
-        path.close();
-
-    }
-
-
-    /**
-     * 角度转弧度公式
-     *
-     * @param degree
-     * @return
-     */
-    private float degree2Radian(int degree) {
-        // TODO Auto-generated method stub
-        return (float) (Math.PI * degree / 180);
-    }
-
-    float cos(int num) {
-        return (float) Math.cos(num * Math.PI / 180);
-    }
-
-    float sin(int num) {
-        return (float) Math.sin(num * Math.PI / 180);
-    }
-
-
-    /**
-     * X坐标围绕中心点旋转
-     *
-     * @param halfX
-     * @param x
-     * @param y
-     * @return
-     */
-    public float turnX(int halfX, float x, float y) {
-        return (float) ((x - halfX) * Math.cos(turn) + (y - halfX) * Math.sin(turn) + halfX);
-    }
-
-    /**
-     * Y坐标围绕中心点旋转
-     *
-     * @param halfX
-     * @param x
-     * @param y
-     * @return
-     */
-    public float turnY(int halfX, float x, float y) {
-        return (float) (-(x - halfX) * Math.sin(turn) + (y - halfX) * Math.cos(turn) + halfX);
-    }
+//    }
 
 
     public int getBorderWidthPx() {
@@ -499,5 +326,45 @@ public class ShapeView extends View {
 
     public void setTurn(float turn) {
         this.turn = turn;
+    }
+
+    public int getBorderDashGap() {
+        return borderDashGap;
+    }
+
+    public void setBorderDashGap(int borderDashGap) {
+        this.borderDashGap = borderDashGap;
+    }
+
+    public int getBorderDashWidth() {
+        return borderDashWidth;
+    }
+
+    public void setBorderDashWidth(int borderDashWidth) {
+        this.borderDashWidth = borderDashWidth;
+    }
+
+    public int getDiagonalPosition() {
+        return diagonalPosition;
+    }
+
+    public void setDiagonalPosition(int diagonalPosition) {
+        this.diagonalPosition = diagonalPosition;
+    }
+
+    public int getDiagonalDirection() {
+        return diagonalDirection;
+    }
+
+    public void setDiagonalDirection(int diagonalDirection) {
+        this.diagonalDirection = diagonalDirection;
+    }
+
+    public int getDiagonalAngle() {
+        return diagonalAngle;
+    }
+
+    public void setDiagonalAngle(int diagonalAngle) {
+        this.diagonalAngle = diagonalAngle;
     }
 }
