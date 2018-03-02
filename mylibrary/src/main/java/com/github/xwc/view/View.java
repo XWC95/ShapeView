@@ -1,6 +1,7 @@
 package com.github.xwc.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -53,6 +54,19 @@ public class View extends FrameLayout {
         clipPaint.setColor(Color.BLACK);
         clipPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         clipPaint.setStrokeWidth(1);
+
+        if (attrs != null) {
+            final TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.ShapeView);
+
+//            if(attributes.hasValue(R.styleable.ShapeView_shape_drawable)){
+//                final int resourceId = attributes.getResourceId(R.styleable.ShapeOfView_clip_drawable, -1);
+//                if(resourceId!=-1) {
+//                    setDrawable(resourceId);
+//                }
+//            }
+
+            attributes.recycle();
+        }
 
     }
 

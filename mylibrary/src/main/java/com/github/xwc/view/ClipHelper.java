@@ -57,7 +57,7 @@ public abstract class ClipHelper implements ClipPath {
     }
 
 
-    public void setClipPath(Path path ,int shapeType, int width, int height) {
+    public void setClipPath(Path path, int shapeType, int width, int height) {
         switch (shapeType) {
             case CIRCLE: //circle
                 setCirclePath(path, width, height);
@@ -99,12 +99,18 @@ public abstract class ClipHelper implements ClipPath {
     }
 
 
+    /**
+     * 三圆形
+     */
     @Override
     public void setCirclePath(Path path, int width, int height) {
         //xy为圆的圆心 radius为圆的半径 Diection.CW 顺时针方向
         path.addCircle(width / 2f, height / 2f, Math.min(width / 2f, height / 2f), Path.Direction.CW);
     }
 
+    /**
+     * 带圆角的矩形
+     */
     @Override
     public void setRoundRectPath(RectF rect, Path path, float topLeftDiameter, float topRightDiameter, float bottomRightDiameter, float bottomLeftDiameter) {
         topLeftDiameter = topLeftDiameter < 0 ? 0 : topLeftDiameter;
@@ -134,6 +140,9 @@ public abstract class ClipHelper implements ClipPath {
         path.close();
     }
 
+    /**
+     * 三角形
+     */
     @Override
     public void setTrianglePath(Path path, int width, int height) {
         float borderWidth = shapeView.getBorderWidthPx() / 2;
@@ -143,6 +152,9 @@ public abstract class ClipHelper implements ClipPath {
         path.close();
     }
 
+    /**
+     * 心形
+     */
     @Override
     public void setHeartPath(Path path, int width, int height) {
         int borderWidth = shapeView.getBorderWidthPx() / 2;
@@ -153,6 +165,9 @@ public abstract class ClipHelper implements ClipPath {
         path.close();
     }
 
+    /**
+     * 正多边形
+     */
     @Override
     public void setPolygonPath(RectF rect, Path path) {
         int sides = shapeView.getSides();
@@ -177,6 +192,10 @@ public abstract class ClipHelper implements ClipPath {
         path.close();
     }
 
+
+    /**
+     * 星星
+     */
     @Override
     public void setStarPath(Path path, float outR, float inR) {
 
@@ -229,6 +248,10 @@ public abstract class ClipHelper implements ClipPath {
         path.close();
     }
 
+
+    /**
+     * 对角线图形
+     */
     @Override
     public void setDiagonalPath(Path path, int width, int height) {
         final float perpendicularHeight = (float) (width * Math.tan(Math.toRadians(shapeView.getDiagonalAngle())));
