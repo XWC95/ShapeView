@@ -6,7 +6,8 @@
         <attr name="shape_borderWidth" format="dimension" />
         <attr name="shape_borderDashGap" format="dimension" />
         <attr name="shape_borderDashWidth" format="dimension" />
-        <attr name="shape_drawable" format="reference"/>
+        <attr name="shape_drawable" format="reference" />
+
 
         <attr name="shape_type" format="enum">
             <enum name="circle" value="0" />
@@ -23,6 +24,9 @@
         <attr name="shape_roundRect_topLeftRadius" format="dimension" />
         <attr name="shape_roundRect_topRightRadius" format="dimension" />
         <attr name="shape_roundRect_radius" format="dimension" />
+        <attr name="shape_roundRect_pressed_color" format="color" />
+        <attr name="shape_roundRect_default_color" format="color" />
+
 
         <attr name="shape_triangle_percentLeft" format="float" />
         <attr name="shape_triangle_percentBottom" format="float" />
@@ -37,16 +41,16 @@
 
 
         <attr name="shape_diagonal_direction" format="enum">
-            <enum name="left" value="1"/>
-            <enum name="right" value="2"/>
+            <enum name="left" value="1" />
+            <enum name="right" value="2" />
         </attr>
         <attr name="shape_diagonal_position" format="enum">
-            <enum name="bottom" value="1"/>
-            <enum name="top" value="2"/>
-            <enum name="left" value="3"/>
-            <enum name="right" value="4"/>
+            <enum name="bottom" value="1" />
+            <enum name="top" value="2" />
+            <enum name="left" value="3" />
+            <enum name="right" value="4" />
         </attr>
-        <attr name="shape_diagonal_angle" format="integer"/>
+        <attr name="shape_diagonal_angle" format="integer" />
 
 
     </declare-styleable>

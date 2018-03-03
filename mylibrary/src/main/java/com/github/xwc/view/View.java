@@ -11,13 +11,15 @@ import android.graphics.PorterDuffXfermode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 /**
  * Created by xwc on 2018/2/24.
  */
 
-public class View extends FrameLayout {
+public class View extends FrameLayout implements android.view.View.OnClickListener {
 
 
     protected final Paint clipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -25,6 +27,7 @@ public class View extends FrameLayout {
     protected Bitmap mask;
 
     private ClipHelper clipHelper;
+    private ClickListener ClickListener;
 
     public View(@NonNull Context context) {
         super(context);
@@ -42,31 +45,19 @@ public class View extends FrameLayout {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        clipPaint.setAntiAlias(true);
-        clipPaint.setColor(Color.WHITE);
 
+        clipPaint.setAntiAlias(true);
+        clipPaint.setColor(Color.RED);
         setDrawingCacheEnabled(true);
         setLayerType(LAYER_TYPE_SOFTWARE, null); //Only works for software layers
 
         porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
         setWillNotDraw(false);
 
-        clipPaint.setColor(Color.BLACK);
         clipPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         clipPaint.setStrokeWidth(1);
 
-        if (attrs != null) {
-            final TypedArray attributes = context.obtainStyledAttributes(attrs, R.styleable.ShapeView);
-
-//            if(attributes.hasValue(R.styleable.ShapeView_shape_drawable)){
-//                final int resourceId = attributes.getResourceId(R.styleable.ShapeOfView_clip_drawable, -1);
-//                if(resourceId!=-1) {
-//                    setDrawable(resourceId);
-//                }
-//            }
-
-            attributes.recycle();
-        }
+        setOnClickListener(this);
 
     }
 
@@ -103,6 +94,7 @@ public class View extends FrameLayout {
         clipPaint.setXfermode(porterDuffXfermode);
         canvas.drawBitmap(mask, 0.0f, 0.0f, clipPaint);
         clipPaint.setXfermode(null);
+
     }
 
 
@@ -112,5 +104,20 @@ public class View extends FrameLayout {
 
     public ClipHelper getClipHelper() {
         return clipHelper;
+    }
+
+    @Override
+    public void onClick(android.view.View view) {
+         if(ClickListener != null){
+             ClickListener.onClick(view);
+         }
+    }
+
+    public interface ClickListener {
+        void onClick(android.view.View var1);
+    }
+
+    public void setClickListener(ClickListener clickListener) {
+        this.ClickListener = clickListener;
     }
 }

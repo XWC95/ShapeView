@@ -8,9 +8,13 @@ import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.MotionEvent;
 
 
 /**
@@ -40,6 +44,10 @@ public class ShapeView extends View {
     private int topRightRadius;
     private int bottomRightRadius;
     private int bottomLeftRadius;
+    @ColorInt
+    private int pressedColor = -1;
+    @ColorInt
+    private int defaultColor = 1;
 
     private float percentBottom = 0.5f;
     private float percentLeft = 0f;
@@ -98,6 +106,9 @@ public class ShapeView extends View {
                 topRightRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_topRightRadius, topRightRadius);
                 bottomLeftRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_bottomLeftRadius, bottomLeftRadius);
                 bottomRightRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_bottomRightRadius, bottomRightRadius);
+                pressedColor = typedArray.getColor(R.styleable.ShapeView_shape_roundRect_pressed_color, pressedColor);
+                defaultColor = typedArray.getColor(R.styleable.ShapeView_shape_roundRect_default_color, defaultColor);
+
             }
             if (shapeType == 2) {
                 percentLeft = typedArray.getFloat(R.styleable.ShapeView_shape_triangle_percentLeft, percentLeft);
@@ -120,8 +131,6 @@ public class ShapeView extends View {
                 diagonalDirection = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_direction, diagonalDirection);
                 diagonalPosition = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_position, diagonalPosition);
             }
-
-
             typedArray.recycle();
         }
         borderPaint.setAntiAlias(true);
@@ -135,12 +144,45 @@ public class ShapeView extends View {
                 return path;
             }
         });
+
+
+//        setOnTouchListener(this);
     }
 
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                if (pressedColor != -1) {
+                    setBackgroundColor(pressedColor);
+                    return true;
+                }
+                return super.onTouchEvent(event);
+            case MotionEvent.ACTION_UP:
+                if(defaultColor != -1){
+                    setBackgroundColor(defaultColor);
+                }
+                break;
+            case MotionEvent.ACTION_CANCEL:
+                if(defaultColor != -1){
+                    setBackgroundColor(defaultColor);
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    boolean firstDispatchDraw = true;
+    @Override
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
+
+        if(defaultColor != -1 && firstDispatchDraw){
+            setBackgroundColor(Color.parseColor("#3F51B5"));
+            firstDispatchDraw = false;
+        }
+
 
         if (borderWidthPx > 0) {
             borderPaint.setStrokeWidth(borderWidthPx);
@@ -367,4 +409,6 @@ public class ShapeView extends View {
     public void setDiagonalAngle(int diagonalAngle) {
         this.diagonalAngle = diagonalAngle;
     }
+
+
 }
