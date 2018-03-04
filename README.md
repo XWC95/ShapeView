@@ -78,6 +78,7 @@ compile 'com.xwc:ShapeView:1.1.0'
 ## RoundRect
 <img src="image/image3.jpg" />
 <img src="image/image8.png"/>
+
 ```xml
 <com.github.xwc.view.ShapeView
     android:id="@+id/roundRectShapeView"
