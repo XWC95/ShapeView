@@ -18,8 +18,8 @@
 compile 'com.xwc:ShapeView:1.1.0'
 ```
 ## preview
-<img src="image/example.jpg" width="280px"/>
-
+<img src="image/example1.jpg" width="280px"/>
+<img src="image/example2.jpg" width="280px"/>
 
 
 
@@ -77,7 +77,7 @@ compile 'com.xwc:ShapeView:1.1.0'
 
 ## RoundRect
 <img src="image/image3.jpg" />
-
+<img src="image/image8.png"/>
 ```xml
 <com.github.xwc.view.ShapeView
     android:id="@+id/roundRectShapeView"
@@ -143,6 +143,35 @@ compile 'com.xwc:ShapeView:1.1.0'
 </com.github.xwc.view.ShapeView>
 ```
 
+## diagonal
+<img src="image/image7.jpg" />
+
+```xml
+ <com.github.xwc.view.ShapeView
+        android:id="@+id/diagonalShapeView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        app:shape_diagonal_angle="10"
+        app:shape_diagonal_direction="left"
+        app:shape_diagonal_position="bottom"
+        app:shape_type="diagonal">
+
+        <ImageView
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@mipmap/image5" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="ShapeView"
+            android:textColor="#87CEEB"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </com.github.xwc.view.ShapeView>
+```
 
 
 
