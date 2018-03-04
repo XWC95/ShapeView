@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:padding="16dp"
+        android:layout_height="match_parent"
+        tools:context="com.github.xwc.example.MainActivity">
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/heartShapeView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shape_borderWidth="3dp"
+            app:shape_type="heart">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/image4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/circleShapeView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shape_borderDashGap="3dp"
+            app:shape_borderDashWidth="10dp"
+            android:layout_marginTop="10dp"
+            app:shape_borderWidth="3dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/roundRectShapeView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            
+            android:layout_marginTop="10dp"
+            app:shape_borderWidth="3dp"
+            app:shape_roundRect_radius="20dp"
+            app:shape_type="roundRect">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/roundRectShapeView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            app:shape_roundRect_bottomRightRadius="20dp"
+            app:shape_roundRect_topLeftRadius="20dp"
+            app:shape_type="roundRect">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/triangleShapeView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="10dp"
+            app:shape_type="triangle">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.github.xwc.view.ShapeView>
+
+        <com.github.xwc.view.ShapeView
+            android:id="@+id/triangleShapeView2"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:shape_triangle_percentBottom="1"
+            app:shape_triangle_percentLeft="0.5"
+            android:layout_marginTop="10dp"
+            app:shape_triangle_percentRight="0"
+            app:shape_type="triangle">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/image3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="ShapeView"
+                android:textColor="#87CEEB"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.github.xwc.view.ShapeView>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>
