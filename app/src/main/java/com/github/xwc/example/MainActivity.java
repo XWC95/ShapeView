@@ -39,25 +39,7 @@ public class MainActivity extends AppCompatActivity {
         adapter = new MyAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-//        shapeView = findViewById(R.id.heartShapeView);
-//        shapeView.setClickListener(new com.github.xwc.view.View.ClickListener() {
-//            @Override
-//            public void onClick(View var1) {
-//                Toast.makeText(MainActivity.this,"点击了",Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//
-//        findViewById(R.id.image).setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d("xwc","点击了");
-//            }
-//        });
 
-//        shapeView.setHeartRadian(0.5f);
-//        shapeView.invalidate();
     }
 
 

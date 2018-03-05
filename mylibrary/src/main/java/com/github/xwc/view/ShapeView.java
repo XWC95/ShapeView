@@ -7,13 +7,10 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.RectF;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 
 
@@ -56,7 +53,9 @@ public class ShapeView extends View {
     private Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
 
-    private float radian = 0.2f; // radians of heart
+    private float heartRadian = 0.2f; // radians of heart
+    private float heartYPercent = 0.16f;
+
 
     private int sides = 4;
     private float turn = 0f; // Turn 0 °
@@ -116,16 +115,17 @@ public class ShapeView extends View {
                 percentRight = typedArray.getFloat(R.styleable.ShapeView_shape_triangle_percentRight, percentRight);
             }
             if (shapeType == 3) {
-                radian = typedArray.getFloat(R.styleable.ShapeView_shape_heart_radian, radian);
+                heartRadian = typedArray.getFloat(R.styleable.ShapeView_shape_heart_radian, heartRadian);
+                heartYPercent = typedArray.getFloat(R.styleable.ShapeView_shape_heart_YPercent,heartYPercent);
             }
 
             if (shapeType == 4) {
                 sides = typedArray.getInteger(R.styleable.ShapeView_shape_polygon_side, sides);
                 turn = typedArray.getFloat(R.styleable.ShapeView_shape_polygon_turn, turn);
             }
-            if (shapeType == 5) {
-                turn = typedArray.getFloat(R.styleable.ShapeView_shape_star_turn, turn);
-            }
+//            if (shapeType == 5) {
+//                turn = typedArray.getFloat(R.styleable.ShapeView_shape_star_turn, turn);
+//            }
             if (shapeType == 6) {
                 diagonalAngle = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_angle, diagonalAngle);
                 diagonalDirection = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_direction, diagonalDirection);
@@ -339,20 +339,13 @@ public class ShapeView extends View {
     }
 
     public float getHeartRadian() {
-        return radian;
+        return heartRadian;
     }
 
     public void setHeartRadian(float radian) {
-        this.radian = radian;
+        this.heartRadian = radian;
     }
 
-    public float getRadian() {
-        return radian;
-    }
-
-    public void setRadian(float radian) {
-        this.radian = radian;
-    }
 
     public int getSides() {
         return sides;
@@ -410,5 +403,27 @@ public class ShapeView extends View {
         this.diagonalAngle = diagonalAngle;
     }
 
+    public int getPressedColor() {
+        return pressedColor;
+    }
 
+    public void setPressedColor(int pressedColor) {
+        this.pressedColor = pressedColor;
+    }
+
+    public int getDefaultColor() {
+        return defaultColor;
+    }
+
+    public void setDefaultColor(int defaultColor) {
+        this.defaultColor = defaultColor;
+    }
+
+    public float getHeartYPercent() {
+        return heartYPercent;
+    }
+
+    public void setHeartYPercent(float heartYPercent) {
+        this.heartYPercent = heartYPercent;
+    }
 }

@@ -100,7 +100,7 @@ public abstract class ClipHelper implements ClipPath {
 
 
     /**
-     * 三圆形
+     * 圆形
      */
     @Override
     public void setCirclePath(Path path, int width, int height) {
@@ -158,10 +158,10 @@ public abstract class ClipHelper implements ClipPath {
     @Override
     public void setHeartPath(Path path, int width, int height) {
         int borderWidth = shapeView.getBorderWidthPx() / 2;
-        path.moveTo(0.5f * width, 0.16f * height + borderWidth);
-        path.cubicTo(0.15f * width + borderWidth, -shapeView.getRadian() * height + borderWidth, -0.4f * width + borderWidth, 0.45f * height + borderWidth, 0.5f * width, height - borderWidth);
+        path.moveTo(0.5f * width, shapeView.getHeartYPercent() * height + borderWidth);
+        path.cubicTo(0.15f * width + borderWidth, -shapeView.getHeartRadian() * height + borderWidth, -0.4f * width + borderWidth, 0.45f * height + borderWidth, 0.5f * width, height - borderWidth);
 //        path.moveTo(0.5f * width, height);
-        path.cubicTo(width + 0.4f * width - borderWidth, 0.45f * height + borderWidth, width - 0.15f * width - borderWidth, -shapeView.getRadian() * height + borderWidth, 0.5f * width, 0.16f * height + borderWidth);
+        path.cubicTo(width + 0.4f * width - borderWidth, 0.45f * height + borderWidth, width - 0.15f * width - borderWidth, -shapeView.getHeartRadian() * height + borderWidth, 0.5f * width, shapeView.getHeartYPercent() * height + borderWidth);
         path.close();
     }
 
