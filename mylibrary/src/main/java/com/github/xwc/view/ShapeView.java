@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Rect;
 import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -32,12 +31,19 @@ public class ShapeView extends View {
 
     private int shapeType; //default circle
 
+    /**圆形*/
     public static final int CIRCLE = 0;
+    /**圆角矩形*/
     public static final int ROUND_RECT = 1;
+    /**三角形*/
     public static final int TRIANGLE = 2;
+    /**心形*/
     public static final int HEART = 3;
+    /**正多边形*/
     public static final int POLYGON = 4;
+    /**五角星形*/
     public static final int STAR = 5;
+    /**对角线形*/
     public static final int DIAGONAL = 6;
 
 
@@ -72,7 +78,6 @@ public class ShapeView extends View {
     public static final int POSITION_LEFT = 3;
     public static final int POSITION_RIGHT = 4;
     public static final int DIRECTION_LEFT = 1;
-    public static final int DIRECTION_RIGHT = 2;
 
     private int diagonalPosition = POSITION_TOP;
     private int diagonalDirection = DIRECTION_LEFT;
@@ -161,7 +166,7 @@ public class ShapeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (resourceId != -1) {
-            Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId),getMeasuredWidth(), getMeasuredHeight(), false);
+            Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
             canvas.drawBitmap(bitmap, 0, 0, new Paint());
         }
     }
@@ -212,27 +217,27 @@ public class ShapeView extends View {
                     canvas.drawCircle(getWidth() / 2f, getHeight() / 2f, Math.min((getWidth() - borderWidthPx) / 2f, (getHeight() - borderWidthPx) / 2f), borderPaint);
                     break;
                 case 1:
-                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    canvas.drawPath(getClipHelper().mPath, borderPaint);
                     break;
 //                case 2:
-//                    Path path = new Path();
-//                    setTriangleBroadPath(path, getWidth(), getHeight());
-//                    canvas.drawPath(path, borderPaint);
+//                    Path mPath = new Path();
+//                    setTriangleBroadPath(mPath, getWidth(), getHeight());
+//                    canvas.drawPath(mPath, borderPaint);
 //                    break;
                 case 3:
-                    canvas.drawPath(getClipHelper().path, borderPaint);
-                    //Path path = new Path();
-                    //setHeartPath3(path, getMeasuredWidth(), getMeasuredHeight());
-                    //canvas.drawPath(path, borderPaint);
+                    canvas.drawPath(getClipHelper().mPath, borderPaint);
+                    //Path mPath = new Path();
+                    //setHeartPath3(mPath, getMeasuredWidth(), getMeasuredHeight());
+                    //canvas.drawPath(mPath, borderPaint);
                     break;
                 case 4:
-                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    canvas.drawPath(getClipHelper().mPath, borderPaint);
                     break;
                 case 5:
-                    canvas.drawPath(getClipHelper().path, borderPaint);
+                    canvas.drawPath(getClipHelper().mPath, borderPaint);
                     break;
 //                case 6:
-//                    canvas.drawPath(getClipHelper().path, borderPaint);
+//                    canvas.drawPath(getClipHelper().mPath, borderPaint);
 //                    break;
             }
 
@@ -240,21 +245,21 @@ public class ShapeView extends View {
     }
 
 
-//    private void setStarPath(Path path, int halfWidth) {
+//    private void setStarPath(Path mPath, int halfWidth) {
 //        if (turn > 0) { //旋转角度大于0度
-//            path.moveTo(turnX(halfWidth, 0, halfWidth * 0.73f), turnY(halfWidth, 0, halfWidth * 0.73f));
-//            path.lineTo(turnX(halfWidth, halfWidth * 2f, halfWidth * 0.73f), turnY(halfWidth, halfWidth * 2f, halfWidth * 0.73f));
-//            path.lineTo(turnX(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f));
-//            path.lineTo(turnX(halfWidth, halfWidth, 0), turnY(halfWidth, halfWidth, 0));//A
-//            path.lineTo(turnX(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f));
+//            mPath.moveTo(turnX(halfWidth, 0, halfWidth * 0.73f), turnY(halfWidth, 0, halfWidth * 0.73f));
+//            mPath.lineTo(turnX(halfWidth, halfWidth * 2f, halfWidth * 0.73f), turnY(halfWidth, halfWidth * 2f, halfWidth * 0.73f));
+//            mPath.lineTo(turnX(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 0.38f, halfWidth * 1.9f));
+//            mPath.lineTo(turnX(halfWidth, halfWidth, 0), turnY(halfWidth, halfWidth, 0));//A
+//            mPath.lineTo(turnX(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f), turnY(halfWidth, halfWidth * 1.62f, halfWidth * 1.9f));
 //        } else {
-//            path.moveTo(0, halfWidth * 0.73f);
-//            path.lineTo(halfWidth * 2, halfWidth * 0.73f);
-//            path.lineTo(halfWidth * 0.38f, halfWidth * 1.9f);
-//            path.lineTo(halfWidth, 0);
-//            path.lineTo(halfWidth * 1.62f, halfWidth * 1.9f);
+//            mPath.moveTo(0, halfWidth * 0.73f);
+//            mPath.lineTo(halfWidth * 2, halfWidth * 0.73f);
+//            mPath.lineTo(halfWidth * 0.38f, halfWidth * 1.9f);
+//            mPath.lineTo(halfWidth, 0);
+//            mPath.lineTo(halfWidth * 1.62f, halfWidth * 1.9f);
 //        }
-//        path.close();
+//        mPath.close();
 //    }
 
 
@@ -446,6 +451,7 @@ public class ShapeView extends View {
     public int getResourceId() {
         return resourceId;
     }
+
     public void setResourceId(int resourceId) {
         this.resourceId = resourceId;
     }

@@ -15,10 +15,20 @@ public class Utils {
         return (float) (Math.PI * degree / 180);
     }
 
+    /**
+     * 余弦
+     * @param num
+     * @return
+     */
     public static  float cos(int num) {
         return (float) Math.cos(num * Math.PI / 180);
     }
 
+    /**
+     * 正弦
+     * @param num
+     * @return
+     */
     public static  float sin(int num) {
         return (float) Math.sin(num * Math.PI / 180);
     }
