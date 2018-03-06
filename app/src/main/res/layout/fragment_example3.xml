@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="16dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
 
     <com.github.xwc.view.ShapeView
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:shape_borderWidth="3dp"
-        app:shape_roundRect_pressed_color="#303F9F"
-        app:shape_roundRect_default_color="#3F51B5"
         app:shape_roundRect_bottomRightRadius="20dp"
+        app:shape_roundRect_default_color="#3F51B5"
+        app:shape_roundRect_pressed_color="#303F9F"
         app:shape_roundRect_topLeftRadius="20dp"
         app:shape_type="roundRect">
 
@@ -28,7 +28,6 @@
 
     </com.github.xwc.view.ShapeView>
 
-
     <com.github.xwc.view.ShapeView
         android:id="@+id/diagonalShapeView"
         android:layout_width="150dp"
@@ -40,10 +39,11 @@
         app:shape_type="diagonal">
 
         <ImageView
-            android:scaleType="centerCrop"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:scaleType="centerCrop"
             android:src="@mipmap/image5" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -53,5 +53,12 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </com.github.xwc.view.ShapeView>
+
+    <com.github.xwc.view.ShapeView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        app:shape_borderWidth="3dp"
+        app:shape_drawable="@mipmap/image1"
+        app:shape_type="circle" />
 
 </LinearLayout>

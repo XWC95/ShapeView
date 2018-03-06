@@ -122,13 +122,13 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
+            app:shape_drawable="@mipmap/image3"
             app:shape_type="triangle">
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image3" />
+                android:scaleType="centerCrop" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -145,16 +145,11 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
+            app:shape_drawable="@mipmap/image3"
             app:shape_triangle_percentBottom="1"
             app:shape_triangle_percentLeft="0.5"
             app:shape_triangle_percentRight="0"
             app:shape_type="triangle">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image3" />
 
             <TextView
                 android:layout_width="wrap_content"

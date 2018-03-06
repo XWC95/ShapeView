@@ -4,8 +4,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import static com.github.xwc.view.ShapeView.CIRCLE;
 import static com.github.xwc.view.ShapeView.DIAGONAL;
@@ -30,6 +34,8 @@ public abstract class ClipHelper implements ClipPath {
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
     private ShapeView shapeView;
+
+
 
     public ClipHelper(ShapeView view) {
         shapeView = view;
