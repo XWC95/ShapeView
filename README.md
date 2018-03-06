@@ -10,7 +10,7 @@
 
 [![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
 
-
+#### TODO 添加drawable属性方便只有图片或颜色的时候使用更加优雅
 
 
 ## Gradle
