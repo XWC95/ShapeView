@@ -28,22 +28,38 @@ public class ShapeView extends View {
     private int borderDashGap = 0;
     private int borderDashWidth = 0;
     private int resourceId = -1;
+    private Bitmap mBitmap;
+
 
     private int shapeType; //default circle
 
-    /**圆形*/
+    /**
+     * 圆形
+     */
     public static final int CIRCLE = 0;
-    /**圆角矩形*/
+    /**
+     * 圆角矩形
+     */
     public static final int ROUND_RECT = 1;
-    /**三角形*/
+    /**
+     * 三角形
+     */
     public static final int TRIANGLE = 2;
-    /**心形*/
+    /**
+     * 心形
+     */
     public static final int HEART = 3;
-    /**正多边形*/
+    /**
+     * 正多边形
+     */
     public static final int POLYGON = 4;
-    /**五角星形*/
+    /**
+     * 五角星形
+     */
     public static final int STAR = 5;
-    /**对角线形*/
+    /**
+     * 对角线形
+     */
     public static final int DIAGONAL = 6;
 
 
@@ -166,9 +182,14 @@ public class ShapeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (resourceId != -1) {
-            Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
-            canvas.drawBitmap(bitmap, 0, 0, new Paint());
+            mBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
+            canvas.drawBitmap(mBitmap, 0, 0, new Paint());
         }
+
+        if (mBitmap != null) {
+            canvas.drawBitmap(mBitmap, 0, 0, new Paint());
+        }
+
     }
 
     @Override
@@ -242,6 +263,14 @@ public class ShapeView extends View {
             }
 
         }
+    }
+
+
+    /**
+     * 重画
+     */
+    public void reDraw() {
+        invalidate();
     }
 
 
@@ -454,5 +483,14 @@ public class ShapeView extends View {
 
     public void setResourceId(int resourceId) {
         this.resourceId = resourceId;
+    }
+
+    public ShapeView setBitmap(Bitmap mBitmap) {
+        this.mBitmap = mBitmap;
+        return this;
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
     }
 }

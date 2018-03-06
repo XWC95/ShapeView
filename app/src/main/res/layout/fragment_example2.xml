@@ -95,7 +95,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             app:shape_diagonal_angle="10"
-            app:shape_diagonal_direction="right"
+            app:shape_diagonal_direction="left"
             app:shape_diagonal_position="bottom"
             app:shape_type="diagonal">
 
