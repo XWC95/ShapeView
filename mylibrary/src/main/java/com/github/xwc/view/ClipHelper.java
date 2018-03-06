@@ -47,7 +47,6 @@ public abstract class ClipHelper implements ClipPath {
         return createClipPath(width, height);
     }
 
-
     @NonNull
     public Bitmap createMask(int width, int height) {
         final Bitmap mask = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
@@ -55,7 +54,6 @@ public abstract class ClipHelper implements ClipPath {
         canvas.drawPath(path, paint);
         return mask;
     }
-
 
     public void setClipPath(Path path, int shapeType, int width, int height) {
         switch (shapeType) {
@@ -97,7 +95,6 @@ public abstract class ClipHelper implements ClipPath {
                 break;
         }
     }
-
 
     /**
      * 圆形

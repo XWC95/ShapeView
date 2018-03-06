@@ -179,7 +179,7 @@ public class ShapeView extends View {
         super.dispatchDraw(canvas);
 
         if(defaultColor != -1 && firstDispatchDraw){
-            setBackgroundColor(Color.parseColor("#3F51B5"));
+            setBackgroundColor(defaultColor);
             firstDispatchDraw = false;
         }
 

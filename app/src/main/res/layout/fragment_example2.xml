@@ -71,7 +71,6 @@
             android:layout_marginTop="10dp"
             android:padding="3dp"
             app:shape_borderWidth="3dp"
-            app:shape_star_turn="0.5"
             app:shape_type="star">
 
             <ImageView
