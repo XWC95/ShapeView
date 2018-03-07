@@ -1,6 +1,5 @@
 package com.github.xwc.example;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

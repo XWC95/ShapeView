@@ -160,7 +160,6 @@ public class ShapeView extends View {
                 diagonalPosition = typedArray.getInteger(R.styleable.ShapeView_shape_diagonal_position, diagonalPosition);
             }
 
-
             typedArray.recycle();
         }
         borderPaint.setAntiAlias(true);
@@ -182,10 +181,9 @@ public class ShapeView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (resourceId != -1) {
-            mBitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
-            canvas.drawBitmap(mBitmap, 0, 0, new Paint());
+            Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
+            canvas.drawBitmap(bitmap, 0, 0, new Paint());
         }
-
         if (mBitmap != null) {
             canvas.drawBitmap(mBitmap, 0, 0, new Paint());
         }

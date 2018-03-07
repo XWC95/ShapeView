@@ -265,7 +265,6 @@ public abstract class ClipHelper implements ClipPath {
     }
 
 
-
     @Override
     public void setDiagonalPath(Path path, int width, int height) {
         final float perpendicularHeight = (float) (width * Math.tan(Math.toRadians(shapeView.getDiagonalAngle())));

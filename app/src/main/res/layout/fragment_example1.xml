@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-
         <com.github.xwc.view.ShapeView
             android:id="@+id/heartShapeView"
             android:layout_width="150dp"
@@ -18,13 +17,9 @@
             app:shape_borderWidth="3dp"
             app:shape_heart_YPercent="0.16"
             app:shape_heart_radian="0.2"
+            app:shape_drawable="@mipmap/image4"
             app:shape_type="heart">
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@mipmap/image4" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -35,7 +30,6 @@
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-
         </com.github.xwc.view.ShapeView>
 
         <com.github.xwc.view.ShapeView
@@ -45,13 +39,8 @@
             android:layout_marginTop="10dp"
             app:shape_borderDashGap="3dp"
             app:shape_borderDashWidth="10dp"
+            app:shape_drawable="@mipmap/image4"
             app:shape_borderWidth="3dp">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image1" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,17 +57,12 @@
             android:id="@+id/roundRectShapeView"
             android:layout_width="150dp"
             android:layout_height="150dp"
-
             android:layout_marginTop="10dp"
             app:shape_borderWidth="3dp"
             app:shape_roundRect_radius="20dp"
+            app:shape_drawable="@mipmap/image2"
             app:shape_type="roundRect">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image2" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -124,11 +108,6 @@
             android:layout_marginTop="10dp"
             app:shape_drawable="@mipmap/image3"
             app:shape_type="triangle">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
 
             <TextView
                 android:layout_width="wrap_content"
