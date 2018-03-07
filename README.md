@@ -271,7 +271,7 @@ compile 'com.github.xwc:ShapeView:1.2.1'
 
 ## attrs 属性
 ```
-   <declare-styleable name="ShapeView">
+  <declare-styleable name="ShapeView">
         <!--边框颜色-->
         <attr name="shape_borderColor" format="color" />
         <!--边框宽度-->
@@ -280,15 +280,25 @@ compile 'com.github.xwc:ShapeView:1.2.1'
         <attr name="shape_borderDashGap" format="dimension" />
         <!--虚线宽度-->
         <attr name="shape_borderDashWidth" format="dimension" />
+        <!-- res图片-->
+        <attr name="shape_drawable" format="reference" />
+
 
         <!--形状类型-->
         <attr name="shape_type" format="enum">
+            <!--圆形-->
             <enum name="circle" value="0" />
+            <!--圆角矩形-->
             <enum name="roundRect" value="1" />
+            <!--三角形-->
             <enum name="triangle" value="2" />
+            <!--心形-->
             <enum name="heart" value="3" />
+            <!--正多边形-->
             <enum name="polygon" value="4" />
+            <!--五角星-->
             <enum name="star" value="5" />
+            <!--对角线-->
             <enum name="diagonal" value="6" />
         </attr>
 
@@ -313,22 +323,22 @@ compile 'com.github.xwc:ShapeView:1.2.1'
         <!--心形弧度-->
         <attr name="shape_heart_radian" format="float" />
         <!--心形上面连接点位置 0～1 float类型-->
-        <attr name="shape_heart_YPercent" format="float"/>
+        <attr name="shape_heart_YPercent" format="float" />
 
-        <!--对边形形边数-->
+        <!--多边形形边数-->
         <attr name="shape_polygon_side" format="integer" />
-        <!--对边形按照XY中心点旋转  0.5为90°-->
+        <!--多边形按照XY中心点旋转  0.5为90°-->
         <attr name="shape_polygon_turn" format="float" />
 
-       <!-- <attr name="shape_star_turn" format="float" />-->
-        
+        <!-- <attr name="shape_star_turn" format="float" />-->
 
-        <!--对角线图形对角的起点 -->
+
+        <!--对角线对角的起点 -->
         <attr name="shape_diagonal_direction" format="enum">
             <enum name="left" value="1" />
             <enum name="right" value="2" />
         </attr>
-        <!--对角线图形对角的那个位置-->
+        <!--对角线对角在哪个位置-->
         <attr name="shape_diagonal_position" format="enum">
             <enum name="bottom" value="1" />
             <enum name="top" value="2" />
