@@ -15,165 +15,37 @@
 
 ## Gradle
 ```
-compile 'com.github.xwc:ShapeView:1.2.0'
+compile 'com.github.xwc:ShapeView:1.2.1'
 ```
 ## preview
-<img src="image/example1.jpg" width="280px"/>
-<img src="image/example2.jpg" width="280px"/>
+<img src="image/example1.jpg" width="280px"/><img src="image/example2.jpg" width="280px"/><img src="image/example3.jpg" width="280px"/>
 
 
-
-## Heart
-<img src="image/image1.jpg" />
+## example
+<img src="image/image1.png" />
 
 ```xml
 <com.github.xwc.view.ShapeView
      android:id="@+id/heartShapeView"
-     android:layout_width="100dp"
-     android:layout_height="100dp"
-     android:layout_marginLeft="10dp"
-     app:shape_type="heart"
-     android:layout_marginTop="10dp"
-     app:layout_constraintLeft_toLeftOf="parent" >
+     android:layout_width="150dp"
+     android:layout_height="150dp"
+     app:shape_borderWidth="3dp"
+     app:shape_heart_YPercent="0.16"
+     app:shape_heart_radian="0.2"
+     app:shape_drawable="@mipmap/image4"
+     app:shape_type="heart">
 
-      <ImageView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:scaleType="centerCrop"
-          android:src="@mipmap/image4" />
-
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:layout_gravity="center"
-          android:layout_marginTop="30dp"
-          android:text="heart"
-          android:textColor="@android:color/black"
-          android:textStyle="bold" />
-
- </com.github.xwc.view.ShapeView>
-```
-
-## Circle
-<img src="image/image2.jpg" />
-
-```xml
-<com.github.xwc.view.ShapeView
-    android:id="@+id/circleShapeView"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    app:shape_circle_borderWidth="5dp"
-    android:padding="5dp"
-    app:shape_circle_borderColor="@color/colorAccent">
-
-     <ImageView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:scaleType="centerCrop"
-         android:src="@mipmap/image1" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="ShapeView"
+        android:textColor="#87CEEB"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
 </com.github.xwc.view.ShapeView>
 ```
-
-## RoundRect
-<img src="image/image3.jpg" />
-<img src="image/image8.png"/>
-
-```xml
-<com.github.xwc.view.ShapeView
-    android:id="@+id/roundRectShapeView"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    app:shape_roundRect_radius="20dp"
-    app:shape_type="roundRect">
-
-</com.github.xwc.view.ShapeView>
-```
-
-## Triangle
-<img src="image/image4.jpg" />
-
-```xml
-<com.github.xwc.view.ShapeView
-    android:id="@+id/triangleShapeView"
-    android:layout_width="100dp"
-    android:layout_height="100dp"
-    app:shape_triangle_percentBottom="0.5"
-    app:shape_triangle_percentLeft="0"
-    app:shape_triangle_percentRight="0"
-    app:shape_type="triangle">
-   
-</com.github.xwc.view.ShapeView>
-```
-
-## EquilateralPolygon
-<img src="image/image5.jpg" />
-
-```xml
-<com.github.xwc.view.ShapeView
-  android:layout_width="70dp"
-  android:layout_height="70dp"
-  app:shape_polygon_side="6"
-  app:shape_polygon_turn="0.3"
-  app:shape_type="polygon">
-
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/colorPrimary" />
-
-</com.github.xwc.view.ShapeView>
-```
-
-## Star
-<img src="image/image6.jpg" />
-
-```xml
-<com.github.xwc.view.ShapeView
-  android:layout_width="70dp"
-  android:layout_height="70dp"
-  app:shape_polygon_side="6"
-  app:shape_polygon_turn="0.5"
-  app:shape_type="star">
-
-  <ImageView
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:background="@color/colorPrimary" />
-
-</com.github.xwc.view.ShapeView>
-```
-
-## diagonal
-<img src="image/image7.jpg" />
-
-```xml
- <com.github.xwc.view.ShapeView
-        android:id="@+id/diagonalShapeView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        app:shape_diagonal_angle="10"
-        app:shape_diagonal_direction="left"
-        app:shape_diagonal_position="bottom"
-        app:shape_type="diagonal">
-
-        <ImageView
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@mipmap/image5" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="ShapeView"
-            android:textColor="#87CEEB"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </com.github.xwc.view.ShapeView>
-```
-
 
 
 
