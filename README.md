@@ -1,5 +1,5 @@
 # ShapView
-给任何一个View剪裁不同形状（现已有心形，圆形，圆角矩形，三角形，正多边形），即将推出更多形状敬请期待！！！
+给任何一个View剪裁不同形状（现已有心形，圆形，圆角矩形，三角形，正多边形，对角线形）
 
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -10,8 +10,13 @@
 
 [![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
 
-#### TODO 添加drawable属性方便只有图片或颜色的时候使用更加优雅
+#### TODO 提供动态addView方法
 
+#### v1.2.1 
+    1.新增shape_drawble属性
+    2.url方式加载图片 
+    
+ <img src="image/image9.png" width="150px" height="150px" /><img src="image/image10.jpg" width="150px" width="280px"/>
 
 ## Gradle
 ```
