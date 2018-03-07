@@ -9,7 +9,7 @@
         <attr name="shape_borderDashGap" format="dimension" />
         <!--虚线宽度-->
         <attr name="shape_borderDashWidth" format="dimension" />
-
+        <!-- res图片-->
         <attr name="shape_drawable" format="reference" />
 
 
