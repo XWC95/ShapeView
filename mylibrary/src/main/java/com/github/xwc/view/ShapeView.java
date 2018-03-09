@@ -14,6 +14,7 @@ import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 
 
@@ -192,23 +193,24 @@ public class ShapeView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                if (pressedColor != -1) {
-                    setBackgroundColor(pressedColor);
-                    return true;
-                }
+        Log.d("Xwc","X" + event.getX());
+        Log.d("Xwc","Y" + event.getY());
+
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (pressedColor != -1) {
+                setBackgroundColor(pressedColor);
                 return super.onTouchEvent(event);
-            case MotionEvent.ACTION_UP:
-                if (defaultColor != -1) {
-                    setBackgroundColor(defaultColor);
-                }
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                if (defaultColor != -1) {
-                    setBackgroundColor(defaultColor);
-                }
-                break;
+            }
+            return true;
+        }
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            setBackgroundColor(defaultColor);
+        }
+        if (event.getAction() == MotionEvent.ACTION_CANCEL) {
+            setBackgroundColor(defaultColor);
+        }
+        if (event.getX() < 0 || event.getX() > getWidth() || event.getY() < 0 || event.getY() > getHeight()) {
+            setBackgroundColor(defaultColor);
         }
         return super.onTouchEvent(event);
     }

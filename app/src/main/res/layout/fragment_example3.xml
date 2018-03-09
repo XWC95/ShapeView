@@ -7,8 +7,20 @@
     android:padding="16dp">
 
     <com.github.xwc.view.ShapeView
+        android:id="@+id/btn_shapeView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        app:shape_borderWidth="3dp"
+        app:shape_roundRect_default_color="#3F51B5"
+        app:shape_roundRect_pressed_color="#303F9F"
+        app:shape_roundRect_radius="20dp"
+        app:shape_type="roundRect" />
+
+
+    <com.github.xwc.view.ShapeView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         app:shape_borderWidth="3dp"
         app:shape_roundRect_bottomRightRadius="20dp"
         app:shape_roundRect_default_color="#3F51B5"
@@ -107,9 +119,9 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
-            android:layout_margin="10dp"
             android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:checked="true"
             android:text="CheckBox" />
 
     </com.github.xwc.view.ShapeView>
