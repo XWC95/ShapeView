@@ -19,9 +19,10 @@ import android.widget.Toast;
 
 /**
  * Created by xwc on 2018/2/24.
+ *
  */
 
-public class View extends FrameLayout implements android.view.View.OnClickListener {
+public class View extends FrameLayout {
 
 
     protected final Paint clipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -29,7 +30,7 @@ public class View extends FrameLayout implements android.view.View.OnClickListen
     protected Bitmap mask;
 
     private ClipHelper clipHelper;
-    private ClickListener ClickListener;
+    protected ClickListener clickListener;
 
     public View(@NonNull Context context) {
         super(context);
@@ -58,8 +59,6 @@ public class View extends FrameLayout implements android.view.View.OnClickListen
 
         clipPaint.setStyle(Paint.Style.FILL_AND_STROKE);
         clipPaint.setStrokeWidth(1);
-
-        setOnClickListener(this);
 
     }
 
@@ -107,18 +106,12 @@ public class View extends FrameLayout implements android.view.View.OnClickListen
         return clipHelper;
     }
 
-    @Override
-    public void onClick(android.view.View view) {
-         if(ClickListener != null){
-             ClickListener.onClick(view);
-         }
-    }
 
     public interface ClickListener {
         void onClick(android.view.View var1);
     }
 
     public void setClickListener(ClickListener clickListener) {
-        this.ClickListener = clickListener;
+        this.clickListener = clickListener;
     }
 }

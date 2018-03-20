@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.DashPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.support.annotation.ColorInt;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -22,15 +21,27 @@ import android.view.MotionEvent;
  * Created by xwc on 2018/2/24.
  */
 
-public class ShapeView extends View {
+public class ShapeView extends View implements View.OnClickListener {
 
     private int borderWidthPx = 0;
     private int borderColor = Color.parseColor("#F66276");
     private int borderDashGap = 0;
     private int borderDashWidth = 0;
-    private int resourceId = -1;
-    private Bitmap mBitmap;
 
+    //默认背景图
+    private int resDefault = -1;
+    //点击背景图
+    private int resPressed = -1;
+
+    private int resourceId = -1;
+
+    //默认背景色
+    private int defaultColor = -1;
+    //点击背景色
+    private int pressedColor = -1;
+
+    //网络下载bitmap
+    private Bitmap mBitmap;
 
     private int shapeType; //default circle
 
@@ -64,22 +75,19 @@ public class ShapeView extends View {
     public static final int DIAGONAL = 6;
 
 
+    // 矩形圆角  //
     private int radius;
     private int topLeftRadius;
     private int topRightRadius;
     private int bottomRightRadius;
     private int bottomLeftRadius;
-    @ColorInt
-    private int pressedColor = -1;
-    @ColorInt
-    private int defaultColor = 1;
+
 
     private float percentBottom = 0.5f;
     private float percentLeft = 0f;
     private float percentRight = 0f;
 
     private Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-
 
     private float heartRadian = 0.2f; // radians of heart
     private float heartYPercent = 0.16f;
@@ -125,7 +133,10 @@ public class ShapeView extends View {
             borderColor = typedArray.getColor(R.styleable.ShapeView_shape_borderColor, borderColor);
             borderDashGap = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderDashGap, borderDashGap);
             borderDashWidth = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_borderDashWidth, borderDashGap);
-            resourceId = typedArray.getResourceId(R.styleable.ShapeView_shape_drawable, resourceId);
+            resDefault = typedArray.getResourceId(R.styleable.ShapeView_shape_default_drawable, resDefault);
+            resPressed = typedArray.getResourceId(R.styleable.ShapeView_shape_pressed_drawable, resPressed);
+            pressedColor = typedArray.getColor(R.styleable.ShapeView_shape_pressed_color, pressedColor);
+            defaultColor = typedArray.getColor(R.styleable.ShapeView_shape_default_color, defaultColor);
 
 
             if (shapeType == 1) {
@@ -134,8 +145,7 @@ public class ShapeView extends View {
                 topRightRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_topRightRadius, topRightRadius);
                 bottomLeftRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_bottomLeftRadius, bottomLeftRadius);
                 bottomRightRadius = typedArray.getDimensionPixelSize(R.styleable.ShapeView_shape_roundRect_bottomRightRadius, bottomRightRadius);
-                pressedColor = typedArray.getColor(R.styleable.ShapeView_shape_roundRect_pressed_color, pressedColor);
-                defaultColor = typedArray.getColor(R.styleable.ShapeView_shape_roundRect_default_color, defaultColor);
+
 
             }
             if (shapeType == 2) {
@@ -165,6 +175,7 @@ public class ShapeView extends View {
         }
         borderPaint.setAntiAlias(true);
         borderPaint.setStyle(Paint.Style.STROKE);
+        setOnClickListener(this);
 
         super.setClipHelper(new ClipHelper(this) {
             @Override
@@ -174,13 +185,15 @@ public class ShapeView extends View {
                 return path;
             }
         });
-
     }
+
 
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+        if (resourceId == -1) {
+            resourceId = resDefault;
+        }
         if (resourceId != -1) {
             Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
             canvas.drawBitmap(bitmap, 0, 0, new Paint());
@@ -188,32 +201,46 @@ public class ShapeView extends View {
         if (mBitmap != null) {
             canvas.drawBitmap(mBitmap, 0, 0, new Paint());
         }
-
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.d("Xwc","X" + event.getX());
-        Log.d("Xwc","Y" + event.getY());
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (pressedColor != -1) {
+            if (resPressed != -1) {
+                resourceId = resPressed;
+                invalidate();
+                return super.onTouchEvent(event);
+            } else if (pressedColor != -1) {
                 setBackgroundColor(pressedColor);
                 return super.onTouchEvent(event);
             }
             return true;
         }
         if (event.getAction() == MotionEvent.ACTION_UP) {
-            setBackgroundColor(defaultColor);
+            if (clickListener != null) {
+                clickListener.onClick(this);
+            }
+            touchUp();
         }
         if (event.getAction() == MotionEvent.ACTION_CANCEL) {
-            setBackgroundColor(defaultColor);
+            touchUp();
         }
         if (event.getX() < 0 || event.getX() > getWidth() || event.getY() < 0 || event.getY() > getHeight()) {
-            setBackgroundColor(defaultColor);
+            touchUp();
         }
         return super.onTouchEvent(event);
     }
+
+    private void touchUp() {
+        if (resDefault != -1) {
+            resourceId = resDefault;
+            invalidate();
+        } else if (defaultColor != -1) {
+            setBackgroundColor(defaultColor);
+        }
+    }
+
 
     boolean firstDispatchDraw = true;
 
@@ -222,8 +249,10 @@ public class ShapeView extends View {
         super.dispatchDraw(canvas);
 
         if (defaultColor != -1 && firstDispatchDraw) {
-            setBackgroundColor(defaultColor);
-            firstDispatchDraw = false;
+            if (resDefault == -1) {
+                setBackgroundColor(defaultColor);
+                firstDispatchDraw = false;
+            }
         }
 
         if (borderWidthPx > 0) {
@@ -492,5 +521,10 @@ public class ShapeView extends View {
 
     public Bitmap getBitmap() {
         return mBitmap;
+    }
+
+    @Override
+    public void onClick(android.view.View v) {
+
     }
 }

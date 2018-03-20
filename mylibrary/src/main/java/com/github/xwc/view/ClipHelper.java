@@ -20,6 +20,7 @@ import static com.github.xwc.view.ShapeView.STAR;
 import static com.github.xwc.view.ShapeView.TRIANGLE;
 
 /**
+ *
  * Created by xwc on 2018/2/24.
  */
 
