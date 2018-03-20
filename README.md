@@ -273,83 +273,82 @@ compile 'com.github.xwc:ShapeView:1.2.2'
 
 ## attrs 属性
 ```
-  <declare-styleable name="ShapeView">
-        <!--边框颜色-->
-        <attr name="shape_borderColor" format="color" />
-        <!--边框宽度-->
-        <attr name="shape_borderWidth" format="dimension" />
-        <!--虚线间隙-->
-        <attr name="shape_borderDashGap" format="dimension" />
-        <!--虚线宽度-->
-        <attr name="shape_borderDashWidth" format="dimension" />
-        <!-- res图片-->
-        <attr name="shape_drawable" format="reference" />
+      <declare-styleable name="ShapeView">
+          <!--边框颜色-->
+          <attr name="shape_borderColor" format="color" />
+          <!--边框宽度-->
+          <attr name="shape_borderWidth" format="dimension" />
+          <!--虚线间隙-->
+          <attr name="shape_borderDashGap" format="dimension" />
+          <!--虚线宽度-->
+          <attr name="shape_borderDashWidth" format="dimension" />
+          <!-- 默认背景图-->
+          <attr name="shape_default_drawable" format="reference" />
+          <!--点击时背景图-->
+          <attr name="shape_pressed_drawable" format="reference" />
+          <!--点击时背景色-->
+          <attr name="shape_pressed_color" format="color" />
+          <!--默认背景色-->
+          <attr name="shape_default_color" format="color" />
 
 
-        <!--形状类型-->
-        <attr name="shape_type" format="enum">
-            <!--圆形-->
-            <enum name="circle" value="0" />
-            <!--圆角矩形-->
-            <enum name="roundRect" value="1" />
-            <!--三角形-->
-            <enum name="triangle" value="2" />
-            <!--心形-->
-            <enum name="heart" value="3" />
-            <!--正多边形-->
-            <enum name="polygon" value="4" />
-            <!--五角星-->
-            <enum name="star" value="5" />
-            <!--对角线-->
-            <enum name="diagonal" value="6" />
-        </attr>
+          <!--形状类型-->
+          <attr name="shape_type" format="enum">
+              <!--圆形-->
+              <enum name="circle" value="0" />
+              <!--圆角矩形-->
+              <enum name="roundRect" value="1" />
+              <!--三角形-->
+              <enum name="triangle" value="2" />
+              <!--心形-->
+              <enum name="heart" value="3" />
+              <!--正多边形-->
+              <enum name="polygon" value="4" />
+              <!--五角星-->
+              <enum name="star" value="5" />
+              <!--对角线-->
+              <enum name="diagonal" value="6" />
+          </attr>
 
-        <!--圆角矩形的四边弧度可分别配置或者直接使用shape_roundRect_radius同时配置-->
-        <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
-        <attr name="shape_roundRect_bottomRightRadius" format="dimension" />
-        <attr name="shape_roundRect_topLeftRadius" format="dimension" />
-        <attr name="shape_roundRect_topRightRadius" format="dimension" />
-        <attr name="shape_roundRect_radius" format="dimension" />
-        <!--圆角矩形点击颜色-->
-        <attr name="shape_roundRect_pressed_color" format="color" />
-        <!--圆角矩形默认颜色-->
-        <attr name="shape_roundRect_default_color" format="color" />
+          <!--圆角矩形的四边弧度可分别配置或者直接使用shape_roundRect_radius同时配置-->
+          <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
+          <attr name="shape_roundRect_bottomRightRadius" format="dimension" />
+          <attr name="shape_roundRect_topLeftRadius" format="dimension" />
+          <attr name="shape_roundRect_topRightRadius" format="dimension" />
+          <attr name="shape_roundRect_radius" format="dimension" />
 
-
-        <!--三角形三个顶点的起始位置 0～1 float类型-->
-        <attr name="shape_triangle_percentLeft" format="float" />
-        <attr name="shape_triangle_percentBottom" format="float" />
-        <attr name="shape_triangle_percentRight" format="float" />
+          <!--三角形三个顶点的起始位置 0～1 float类型-->
+          <attr name="shape_triangle_percentLeft" format="float" />
+          <attr name="shape_triangle_percentBottom" format="float" />
+          <attr name="shape_triangle_percentRight" format="float" />
 
 
-        <!--心形弧度-->
-        <attr name="shape_heart_radian" format="float" />
-        <!--心形上面连接点位置 0～1 float类型-->
-        <attr name="shape_heart_YPercent" format="float" />
+          <!--心形弧度-->
+          <attr name="shape_heart_radian" format="float" />
+          <!--心形上面连接点位置 0～1 float类型-->
+          <attr name="shape_heart_YPercent" format="float" />
 
-        <!--多边形形边数-->
-        <attr name="shape_polygon_side" format="integer" />
-        <!--多边形按照XY中心点旋转  0.5为90°-->
-        <attr name="shape_polygon_turn" format="float" />
-
-        <!-- <attr name="shape_star_turn" format="float" />-->
+          <!--多边形形边数-->
+          <attr name="shape_polygon_side" format="integer" />
+          <!--多边形按照XY中心点旋转  0.5为90°-->
+          <attr name="shape_polygon_turn" format="float" />
 
 
-        <!--对角线对角的起点 -->
-        <attr name="shape_diagonal_direction" format="enum">
-            <enum name="left" value="1" />
-            <enum name="right" value="2" />
-        </attr>
-        <!--对角线对角在哪个位置-->
-        <attr name="shape_diagonal_position" format="enum">
-            <enum name="bottom" value="1" />
-            <enum name="top" value="2" />
-            <enum name="left" value="3" />
-            <enum name="right" value="4" />
-        </attr>
-        <attr name="shape_diagonal_angle" format="integer" />
+          <!--对角线对角的起点 -->
+          <attr name="shape_diagonal_direction" format="enum">
+              <enum name="left" value="1" />
+              <enum name="right" value="2" />
+          </attr>
+          <!--对角线对角在哪个位置-->
+          <attr name="shape_diagonal_position" format="enum">
+              <enum name="bottom" value="1" />
+              <enum name="top" value="2" />
+              <enum name="left" value="3" />
+              <enum name="right" value="4" />
+          </attr>
+          <attr name="shape_diagonal_angle" format="integer" />
 
-    </declare-styleable>
+      </declare-styleable>
 ```
 
 

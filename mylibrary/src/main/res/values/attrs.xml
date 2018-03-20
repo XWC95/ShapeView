@@ -9,7 +9,7 @@
         <attr name="shape_borderDashGap" format="dimension" />
         <!--虚线宽度-->
         <attr name="shape_borderDashWidth" format="dimension" />
-        <!-- 默认背景色-->
+        <!-- 默认背景图-->
         <attr name="shape_default_drawable" format="reference" />
         <!--点击时背景图-->
         <attr name="shape_pressed_drawable" format="reference" />
