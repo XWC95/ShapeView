@@ -60,8 +60,6 @@
         <!--多边形按照XY中心点旋转  0.5为90°-->
         <attr name="shape_polygon_turn" format="float" />
 
-        <!-- <attr name="shape_star_turn" format="float" />-->
-
 
         <!--对角线对角的起点 -->
         <attr name="shape_diagonal_direction" format="enum">

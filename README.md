@@ -1,5 +1,5 @@
 # ShapView
-给任何一个View剪裁不同形状（现已有心形，圆形，圆角矩形，三角形，正多边形，对角线形）
+给任何一个View剪裁不同形状，并且代替shape
 
 [![Apache 2.0 License](https://img.shields.io/badge/license-Apache%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
@@ -10,7 +10,9 @@
 
 [![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
 
-#### TODO 提供动态addView方法
+#### v1.2.2 
+    1.可展示默认颜色和点击时颜色
+    2.可展示默认图片和点击时图片
 
 #### v1.2.1 
     1.新增shape_drawble属性
@@ -20,7 +22,7 @@
 
 ## Gradle
 ```
-compile 'com.github.xwc:ShapeView:1.2.1'
+compile 'com.github.xwc:ShapeView:1.2.2'
 ```
 ## preview
 <img src="image/example1.jpg" width="280px"/><img src="image/example2.jpg" width="280px"/><img src="image/example3.jpg" width="280px"/>
@@ -158,35 +160,35 @@ compile 'com.github.xwc:ShapeView:1.2.1'
 
         int borderWidthPx = shapeView.getBorderWidthPx();
         float radius = outR;
-        float radian = Utils.degree2Radian(36);// 36为五角星的角度
-        float radius_in = (float) (radius * Math.sin(radian / 2) / Math
-                .cos(radian)); // 中间五边形的半径
+        float heartRadian = Utils.degree2Radian(36);// 36为五角星的角度
+        float radius_in = (float) (radius * Math.sin(heartRadian / 2) / Math
+                .cos(heartRadian)); // 中间五边形的半径
 
-        path.moveTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), borderWidthPx);// 此点为多边形的起点
-        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
-                        * Math.sin(radian) + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) * 2 + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) + radius_in
-                        * Math.cos(radian / 2) + borderWidthPx),
-                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
+        path.moveTo((float) (radius * Math.cos(heartRadian / 2) + borderWidthPx), borderWidthPx);// 此点为多边形的起点
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) + radius_in
+                        * Math.sin(heartRadian) + borderWidthPx),
+                (float) (radius - radius * Math.sin(heartRadian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) * 2 + borderWidthPx),
+                (float) (radius - radius * Math.sin(heartRadian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) + radius_in
+                        * Math.cos(heartRadian / 2) + borderWidthPx),
+                (float) (radius + radius_in * Math.sin(heartRadian / 2) + borderWidthPx));
         path.lineTo(
-                (float) (radius * Math.cos(radian / 2) + radius
-                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
-                        * Math.cos(radian) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) + borderWidthPx), radius + radius_in + borderWidthPx);
+                (float) (radius * Math.cos(heartRadian / 2) + radius
+                        * Math.sin(heartRadian) + borderWidthPx), (float) (radius + radius
+                        * Math.cos(heartRadian) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) + borderWidthPx), radius + radius_in + borderWidthPx);
         path.lineTo(
-                (float) (radius * Math.cos(radian / 2) - radius
-                        * Math.sin(radian) + borderWidthPx), (float) (radius + radius
-                        * Math.cos(radian) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
-                        * Math.cos(radian / 2) + borderWidthPx),
-                (float) (radius + radius_in * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo(borderWidthPx, (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
-        path.lineTo((float) (radius * Math.cos(radian / 2) - radius_in
-                        * Math.sin(radian) + borderWidthPx),
-                (float) (radius - radius * Math.sin(radian / 2) + borderWidthPx));
+                (float) (radius * Math.cos(heartRadian / 2) - radius
+                        * Math.sin(heartRadian) + borderWidthPx), (float) (radius + radius
+                        * Math.cos(heartRadian) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) - radius_in
+                        * Math.cos(heartRadian / 2) + borderWidthPx),
+                (float) (radius + radius_in * Math.sin(heartRadian / 2) + borderWidthPx));
+        path.lineTo(borderWidthPx, (float) (radius - radius * Math.sin(heartRadian / 2) + borderWidthPx));
+        path.lineTo((float) (radius * Math.cos(heartRadian / 2) - radius_in
+                        * Math.sin(heartRadian) + borderWidthPx),
+                (float) (radius - radius * Math.sin(heartRadian / 2) + borderWidthPx));
 
         path.close();
     }
