@@ -39,7 +39,8 @@ compile 'com.github.xwc:ShapeView:1.2.2'
      app:shape_borderWidth="3dp"
      app:shape_heart_YPercent="0.16"
      app:shape_heart_radian="0.2"
-     app:shape_drawable="@mipmap/image4"
+     app:shape_default_drawable="@mipmap/image1"
+     app:shape_pressed_drawable="@mipmap/image2"
      app:shape_type="heart">
 
     <TextView
