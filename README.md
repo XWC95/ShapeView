@@ -10,6 +10,9 @@
 
 [![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
 
+#### v1.2.3 
+    1.优化修复
+
 #### v1.2.2 
     1.可展示默认颜色和点击时颜色
     2.可展示默认图片和点击时图片
@@ -22,7 +25,7 @@
 
 ## Gradle
 ```
-compile 'com.github.xwc:ShapeView:1.2.2'
+compile 'com.github.xwc:ShapeView:1.2.3'
 ```
 ## preview
 <img src="image/example1.jpg" width="280px"/><img src="image/example2.jpg" width="280px"/><img src="image/example3.jpg" width="280px"/>

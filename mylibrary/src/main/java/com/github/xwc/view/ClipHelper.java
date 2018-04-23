@@ -20,7 +20,6 @@ import static com.github.xwc.view.ShapeView.STAR;
 import static com.github.xwc.view.ShapeView.TRIANGLE;
 
 /**
- *
  * Created by xwc on 2018/2/24.
  */
 
@@ -142,7 +141,7 @@ public abstract class ClipHelper implements ClipPath {
         topRightDiameter = topRightDiameter < 0 ? 0 : topRightDiameter;
         bottomLeftDiameter = bottomLeftDiameter < 0 ? 0 : bottomLeftDiameter;
         bottomRightDiameter = bottomRightDiameter < 0 ? 0 : bottomRightDiameter;
-        float borderWidth = shapeView.getBorderWidthPx() / 2;
+        float borderWidth = shapeView.getBorderWidthPx();
         path.moveTo(rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
 
         path.lineTo(rect.right - topRightDiameter - borderWidth, rect.top + borderWidth);
@@ -210,7 +209,6 @@ public abstract class ClipHelper implements ClipPath {
         }
         path.close();
     }
-
 
 
     @Override

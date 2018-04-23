@@ -29,16 +29,16 @@ public class ShapeView extends View implements View.OnClickListener {
     private int borderDashWidth = 0;
 
     //默认背景图
-    private int resDefault = -1;
+    private int resDefault = 0;
     //点击背景图
-    private int resPressed = -1;
+    private int resPressed =0;
 
-    private int resourceId = -1;
+    private int resourceId = 0;
 
     //默认背景色
-    private int defaultColor = -1;
+    private int defaultColor = 0;
     //点击背景色
-    private int pressedColor = -1;
+    private int pressedColor = 0;
 
     //网络下载bitmap
     private Bitmap mBitmap;
@@ -191,10 +191,10 @@ public class ShapeView extends View implements View.OnClickListener {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-        if (resourceId == -1) {
+        if (resourceId == 0) {
             resourceId = resDefault;
         }
-        if (resourceId != -1) {
+        if (resourceId != 0) {
             Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), resourceId), getMeasuredWidth(), getMeasuredHeight(), false);
             canvas.drawBitmap(bitmap, 0, 0, new Paint());
         }
@@ -207,11 +207,11 @@ public class ShapeView extends View implements View.OnClickListener {
     public boolean onTouchEvent(MotionEvent event) {
 
         if (event.getAction() == MotionEvent.ACTION_DOWN) {
-            if (resPressed != -1) {
+            if (resPressed != 0) {
                 resourceId = resPressed;
                 invalidate();
                 return super.onTouchEvent(event);
-            } else if (pressedColor != -1) {
+            } else if (pressedColor != 0) {
                 setBackgroundColor(pressedColor);
                 return super.onTouchEvent(event);
             }
@@ -233,10 +233,10 @@ public class ShapeView extends View implements View.OnClickListener {
     }
 
     private void touchUp() {
-        if (resDefault != -1) {
+        if (resDefault != 0) {
             resourceId = resDefault;
             invalidate();
-        } else if (defaultColor != -1) {
+        } else if (defaultColor != 0) {
             setBackgroundColor(defaultColor);
         }
     }
@@ -248,8 +248,8 @@ public class ShapeView extends View implements View.OnClickListener {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if (defaultColor != -1 && firstDispatchDraw) {
-            if (resDefault == -1) {
+        if (defaultColor != 0 && firstDispatchDraw) {
+            if (resDefault == 0) {
                 setBackgroundColor(defaultColor);
                 firstDispatchDraw = false;
             }

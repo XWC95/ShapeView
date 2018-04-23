@@ -10,17 +10,25 @@
         android:id="@+id/btn_shapeView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:shape_borderWidth="3dp"
+        app:shape_borderWidth="1dp"
         app:shape_default_color="#3F51B5"
         app:shape_pressed_color="#303F9F"
-        app:shape_roundRect_radius="20dp"
+        app:shape_roundRect_radius="16dp"
         app:shape_type="roundRect" />
-
 
     <com.github.xwc.view.ShapeView
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        app:shape_default_color="#3F51B5"
+        app:shape_pressed_color="#FFFFFF"
+        app:shape_roundRect_radius="16dp"
+        app:shape_type="roundRect" />
+
+    <com.github.xwc.view.ShapeView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
         app:shape_borderWidth="3dp"
         app:shape_default_color="#3F51B5"
         app:shape_pressed_color="#303F9F"
@@ -136,8 +144,8 @@
             android:layout_marginLeft="10dp"
             app:shape_borderWidth="3dp"
             app:shape_default_drawable="@mipmap/image1"
-            app:shape_pressed_drawable="@mipmap/image2"
             app:shape_polygon_side="6"
+            app:shape_pressed_drawable="@mipmap/image2"
             app:shape_type="polygon">
 
             <TextView

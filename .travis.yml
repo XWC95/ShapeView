@@ -3,7 +3,11 @@ android:
   components:
   - tools
   - platform-tools
-  - build-tools-27.0.2
-  - android-27
+  - build-tools-26.0.2
+  - android-26
   - extra-android-m2repository
   - extra-android-support
+script:
+  - ./gradlew check
+
+sudo: false
