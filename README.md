@@ -9,6 +9,8 @@
 扫描二维码 或者 点击二维码 下载
 
 [![ShapeView](https://github.com/xwc520/ShapView/raw/master/image/qrcode.png)](https://github.com/xwc520/ShapView/raw/master/image/app-release.apk)
+#### v1.2.4 
+    1.修复圆角度数过大问题
 
 #### v1.2.3 
     1.优化修复
@@ -25,7 +27,7 @@
 
 ## Gradle
 ```
-compile 'com.github.xwc:ShapeView:1.2.3'
+compile 'com.github.xwc:ShapeView:1.2.4'
 ```
 ## preview
 <img src="image/example1.jpg" width="280px"/><img src="image/example2.jpg" width="280px"/><img src="image/example3.jpg" width="280px"/>
