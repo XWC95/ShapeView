@@ -145,12 +145,31 @@ public abstract class ClipHelper implements ClipPath {
         path.moveTo(rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
 
         path.lineTo(rect.right - topRightDiameter - borderWidth, rect.top + borderWidth);
-        path.quadTo(rect.right - borderWidth, rect.top + borderWidth, rect.right - borderWidth, rect.top + topRightDiameter + borderWidth);
-        path.lineTo(rect.right - borderWidth, rect.bottom - bottomRightDiameter - borderWidth);
+
+        if (topRightDiameter > (rect.bottom / 2)) {
+            path.quadTo(rect.right - borderWidth, rect.top + borderWidth, rect.right - borderWidth, rect.top + rect.bottom / 2+borderWidth);
+        } else {
+            path.quadTo(rect.right - borderWidth, rect.top + borderWidth, rect.right - borderWidth, rect.top + topRightDiameter + borderWidth);
+        }
+        if (bottomRightDiameter < (rect.bottom / 2)) {
+            path.lineTo(rect.right - borderWidth, rect.bottom - bottomRightDiameter - borderWidth);
+        }
+
         path.quadTo(rect.right - borderWidth, rect.bottom - borderWidth, rect.right - bottomRightDiameter - borderWidth, rect.bottom - borderWidth);
+
+
         path.lineTo(rect.left + bottomLeftDiameter + borderWidth, rect.bottom - borderWidth);
-        path.quadTo(rect.left + borderWidth, rect.bottom - borderWidth, rect.left + borderWidth, rect.bottom - bottomLeftDiameter - borderWidth);
-        path.lineTo(rect.left + borderWidth, rect.top + topLeftDiameter + borderWidth);
+
+        if (bottomLeftDiameter > (rect.bottom / 2)) {
+            path.quadTo(rect.left + borderWidth, rect.bottom - borderWidth, rect.left + borderWidth, rect.bottom / 2 - borderWidth);
+        } else {
+            path.quadTo(rect.left + borderWidth, rect.bottom - borderWidth, rect.left + borderWidth, rect.bottom - bottomLeftDiameter - borderWidth);
+        }
+
+        if (topLeftDiameter < rect.bottom / 2) {
+            path.lineTo(rect.left + borderWidth, rect.top + topLeftDiameter + borderWidth);
+        }
+
         path.quadTo(rect.left + borderWidth, rect.top + borderWidth, rect.left + topLeftDiameter + borderWidth, rect.top + borderWidth);
         path.close();
     }
