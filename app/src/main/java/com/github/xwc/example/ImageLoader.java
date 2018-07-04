@@ -12,13 +12,13 @@ import com.github.xwc.view.ShapeView;
 
 public class ImageLoader {
 
-
     public static void loadImage(Context context, Object url, ShapeView shapeView, int width, int height) {
 
         Glide.with(context).asBitmap().load(url).into(new SimpleTarget<Bitmap>(width, height) {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                shapeView.setBitmap(resource).reDraw();
+                shapeView.setBitmap(resource);
+                shapeView.reDraw();
             }
         });
     }
@@ -27,7 +27,8 @@ public class ImageLoader {
         Glide.with(context).asBitmap().load(url).into(new SimpleTarget<Bitmap>() {
             @Override
             public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-                shapeView.setBitmap(resource).reDraw();
+                shapeView.setBitmap(resource);
+                shapeView.reDraw();
             }
         });
     }

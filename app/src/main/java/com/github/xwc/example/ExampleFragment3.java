@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.xwc.view.ButtonShapeView;
 import com.github.xwc.view.ShapeView;
 
 
@@ -24,6 +25,8 @@ public class ExampleFragment3 extends Fragment {
     private ShapeView shapeView;
     private ShapeView btnShapeView;
 
+    private ButtonShapeView buttonShape;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,19 +36,26 @@ public class ExampleFragment3 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        shapeView = view.findViewById(R.id.shapeView);
-        btnShapeView = view.findViewById(R.id.btn_shapeView);
+//        shapeView = view.findViewById(R.id.shapeView);
+//        btnShapeView = view.findViewById(R.id.btn_shapeView);
+//
+//        addTextView(btnShapeView);
+//
+//        ImageLoader.loadImage(getContext(), mImageUrl, shapeView, dp2px(150), dp2px(150));
+//        btnShapeView.setClickListener(new com.github.xwc.view.Shape.ClickListener() {
+//            @Override
+//            public void onClick(View var1) {
+//                Toast.makeText(getActivity(),"点击",Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
-        addTextView(btnShapeView);
 
-        ImageLoader.loadImage(getContext(), mImageUrl, shapeView, dp2px(150), dp2px(150));
-        btnShapeView.setClickListener(new com.github.xwc.view.View.ClickListener() {
+        view.findViewById(R.id.ButtonShape).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View var1) {
-                Toast.makeText(getActivity(),"点击",Toast.LENGTH_SHORT).show();
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void addTextView(ShapeView view) {

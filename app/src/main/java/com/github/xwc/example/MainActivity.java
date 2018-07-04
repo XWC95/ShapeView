@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tablayout);
 
-
         list = new ArrayList<>();
         list.add(new ExampleFragment(R.layout.fragment_example1) );
         list.add(new ExampleFragment(R.layout.fragment_example2));
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
     }
+
 
 
     class MyAdapter extends FragmentPagerAdapter {

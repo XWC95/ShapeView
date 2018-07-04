@@ -138,6 +138,7 @@
                 android:textColor="#87CEEB"
                 android:textSize="18sp"
                 android:textStyle="bold" />
+
         </com.github.xwc.view.ShapeView>
 
 

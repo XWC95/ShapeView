@@ -1,23 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="ShapeView">
-        <!--边框颜色-->
-        <attr name="shape_borderColor" format="color" />
-        <!--边框宽度-->
-        <attr name="shape_borderWidth" format="dimension" />
-        <!--虚线间隙-->
-        <attr name="shape_borderDashGap" format="dimension" />
-        <!--虚线宽度-->
-        <attr name="shape_borderDashWidth" format="dimension" />
-        <!-- 默认背景图-->
-        <attr name="shape_default_drawable" format="reference" />
-        <!--点击时背景图-->
-        <attr name="shape_pressed_drawable" format="reference" />
-        <!--点击时背景色-->
-        <attr name="shape_pressed_color" format="color" />
-        <!--默认背景色-->
-        <attr name="shape_default_color" format="color" />
-
 
         <!--形状类型-->
         <attr name="shape_type" format="enum">
@@ -37,12 +20,7 @@
             <enum name="diagonal" value="6" />
         </attr>
 
-        <!--圆角矩形的四边弧度可分别配置或者直接使用shape_roundRect_radius同时配置-->
-        <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
-        <attr name="shape_roundRect_bottomRightRadius" format="dimension" />
-        <attr name="shape_roundRect_topLeftRadius" format="dimension" />
-        <attr name="shape_roundRect_topRightRadius" format="dimension" />
-        <attr name="shape_roundRect_radius" format="dimension" />
+
 
         <!--三角形三个顶点的起始位置 0～1 float类型-->
         <attr name="shape_triangle_percentLeft" format="float" />
@@ -76,4 +54,46 @@
         <attr name="shape_diagonal_angle" format="integer" />
 
     </declare-styleable>
+
+
+
+    <declare-styleable name="ButtonShapeView">
+
+        <attr name="shape_roundRect_bottomLeftRadius" format="dimension" />
+        <attr name="shape_roundRect_bottomRightRadius" format="dimension" />
+        <attr name="shape_roundRect_topLeftRadius" format="dimension" />
+        <attr name="shape_roundRect_topRightRadius" format="dimension" />
+        <attr name="shape_roundRect_radius" format="dimension" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="TextDrawableView">
+
+        <attr name="defaultColor" format="color" />
+
+        <attr name="pressedColor" format="color" />
+
+    </declare-styleable>
+
+
+    <declare-styleable name="Shape">
+        <!--边框颜色-->
+        <attr name="shape_borderColor" format="color" />
+        <!--边框宽度-->
+        <attr name="shape_borderWidth" format="dimension" />
+        <!--虚线间隙-->
+        <attr name="shape_borderDashGap" format="dimension" />
+        <!--虚线宽度-->
+        <attr name="shape_borderDashWidth" format="dimension" />
+        <!-- 默认背景图-->
+        <attr name="shape_default_drawable" format="reference" />
+        <!--点击时背景图-->
+        <attr name="shape_pressed_drawable" format="reference" />
+        <!--点击时背景色-->
+        <attr name="shape_pressed_color" format="color" />
+        <!--默认背景色-->
+        <attr name="shape_default_color" format="color" />
+    </declare-styleable>
+
 </resources>

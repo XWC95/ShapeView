@@ -64,58 +64,57 @@
 
         </com.github.xwc.view.ShapeView>
 
-        <com.github.xwc.view.ShapeView
-            android:id="@+id/roundRectShapeView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+        <!--<com.github.xwc.view.ShapeView-->
+            <!--android:id="@+id/roundRectShapeView"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--app:shape_borderWidth="3dp"-->
+            <!--app:shape_roundRect_radius="20dp"-->
+            <!--app:shape_type="roundRect">-->
 
-            android:layout_marginTop="10dp"
-            app:shape_borderWidth="3dp"
-            app:shape_roundRect_radius="20dp"
-            app:shape_type="roundRect">
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@mipmap/image2" />-->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image2" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:text="ShapeView"-->
+                <!--android:textColor="#87CEEB"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <!--</com.github.xwc.view.ShapeView>-->
 
-        </com.github.xwc.view.ShapeView>
+        <!--<com.github.xwc.view.ShapeView-->
+            <!--android:id="@+id/roundRectShapeView2"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--app:shape_roundRect_bottomRightRadius="20dp"-->
+            <!--app:shape_roundRect_topLeftRadius="20dp"-->
+            <!--app:shape_type="roundRect">-->
 
-        <com.github.xwc.view.ShapeView
-            android:id="@+id/roundRectShapeView2"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            app:shape_roundRect_bottomRightRadius="20dp"
-            app:shape_roundRect_topLeftRadius="20dp"
-            app:shape_type="roundRect">
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@mipmap/image2" />-->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image2" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:text="ShapeView"-->
+                <!--android:textColor="#87CEEB"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textStyle="bold" />-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
-                android:textStyle="bold" />
-
-        </com.github.xwc.view.ShapeView>
+        <!--</com.github.xwc.view.ShapeView>-->
 
         <com.github.xwc.view.ShapeView
             android:id="@+id/triangleShapeView"
