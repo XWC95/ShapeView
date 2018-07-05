@@ -3,18 +3,23 @@ package com.github.xwc.view;
 import android.graphics.Path;
 import android.graphics.RectF;
 
+import com.github.xwc.compiler.ShapeType;
+
+import static com.github.xwc.view.ShapeView.CIRCLE;
 import static com.github.xwc.view.ShapeView.POLYGON;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(POLYGON)
+@ShapeType(value = POLYGON, superClass = IClipPath.class)
 public class PolygonPath implements IClipPath {
 
     private ShapeView shapeView;
 
-    public PolygonPath(ShapeView shapeView) {
-        this.shapeView = shapeView;
+    public PolygonPath(Object... objects) {
+        if (objects[0] instanceof ShapeView) {
+            this.shapeView = (ShapeView) objects[0];
+        }
     }
 
     @Override

@@ -2,6 +2,11 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
+import com.github.xwc.compiler.ShapeType;
+
+import java.util.Objects;
+
+import static com.github.xwc.view.ShapeView.CIRCLE;
 import static com.github.xwc.view.ShapeView.DIAGONAL;
 import static com.github.xwc.view.ShapeView.DIRECTION_LEFT;
 import static com.github.xwc.view.ShapeView.POSITION_BOTTOM;
@@ -12,17 +17,22 @@ import static com.github.xwc.view.ShapeView.POSITION_TOP;
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(DIAGONAL)
+@ShapeType(value = DIAGONAL, superClass = IClipPath.class)
 public class DiagonalPath implements IClipPath {
 
     private ShapeView shapeView;
 
-    public DiagonalPath(ShapeView shapeView) {
-        this.shapeView = shapeView;
+    public DiagonalPath(Object... objects) {
+        if (objects[0] instanceof ShapeView) {
+            this.shapeView = (ShapeView) objects[0];
+        }
     }
 
     @Override
     public void setClipPath(Path path, int width, int height) {
+        if (shapeView == null) {
+            return;
+        }
         final float perpendicularHeight = (float) (width * Math.tan(Math.toRadians(shapeView.getDiagonalAngle())));
         final boolean isDirectionLeft = shapeView.getDiagonalDirection() == DIRECTION_LEFT;
         int paddingLeft = shapeView.getPaddingLeft();

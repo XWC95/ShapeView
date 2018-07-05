@@ -2,18 +2,22 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
+import com.github.xwc.compiler.ShapeType;
+
 import static com.github.xwc.view.ShapeView.STAR;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(STAR)
+@ShapeType(value = STAR, superClass = IClipPath.class)
 public class StarPath implements IClipPath {
 
     private ShapeView shapeView;
 
-    public StarPath(ShapeView shapeView) {
-        this.shapeView = shapeView;
+    public StarPath(Object... objects) {
+        if (objects[0] instanceof ShapeView) {
+            this.shapeView = (ShapeView) objects[0];
+        }
     }
 
     @Override

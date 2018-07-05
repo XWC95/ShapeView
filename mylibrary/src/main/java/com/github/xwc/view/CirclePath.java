@@ -2,13 +2,14 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
+import com.github.xwc.compiler.ShapeType;
+
 import static com.github.xwc.view.ShapeView.CIRCLE;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-
-@ShapeType(CIRCLE)
+@ShapeType(value = CIRCLE, superClass = IClipPath.class)
 public class CirclePath implements IClipPath {
 
     @Override

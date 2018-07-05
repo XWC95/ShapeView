@@ -2,18 +2,22 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
+import com.github.xwc.compiler.ShapeType;
+
 import static com.github.xwc.view.ShapeView.HEART;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(HEART)
+@ShapeType(value = HEART, superClass = IClipPath.class)
 public class HeartPath implements IClipPath {
 
     private ShapeView shapeView;
 
-    public HeartPath(ShapeView shapeView) {
-        this.shapeView = shapeView;
+    public HeartPath(Object... objects) {
+        if (objects[0] instanceof ShapeView) {
+            this.shapeView = (ShapeView) objects[0];
+        }
     }
 
     @Override

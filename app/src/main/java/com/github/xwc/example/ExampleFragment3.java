@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.xwc.view.ButtonShapeView;
+import com.github.xwc.view.Shape;
 import com.github.xwc.view.ShapeView;
 
 
@@ -23,7 +24,6 @@ public class ExampleFragment3 extends Fragment {
     private String mImageUrl = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2399593750,1890890896&fm=27&gp=0.jpg";
 
     private ShapeView shapeView;
-    private ShapeView btnShapeView;
 
     private ButtonShapeView buttonShape;
 
@@ -37,7 +37,7 @@ public class ExampleFragment3 extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        shapeView = view.findViewById(R.id.shapeView);
-//        btnShapeView = view.findViewById(R.id.btn_shapeView);
+        buttonShape = view.findViewById(R.id.buttonShape);
 //
 //        addTextView(btnShapeView);
 //
@@ -49,13 +49,10 @@ public class ExampleFragment3 extends Fragment {
 //            }
 //        });
 
-
-        view.findViewById(R.id.ButtonShape).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
-            }
+        buttonShape.setOnShapeClickListener(v -> {
+            Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
         });
+
     }
 
     private void addTextView(ShapeView view) {

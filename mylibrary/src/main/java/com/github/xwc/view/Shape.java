@@ -10,11 +10,13 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.FrameLayout;
 
 /**
@@ -22,6 +24,8 @@ import android.widget.FrameLayout;
  */
 
 public class Shape extends FrameLayout {
+
+    private onShapeClickListener onShapeClickListener;
 
     protected final Paint clipPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
     protected Paint borderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -37,21 +41,24 @@ public class Shape extends FrameLayout {
     protected int borderDashWidth;
 
     //默认背景图
+    @DrawableRes
     protected int defaultDrawable;
     //点击背景图
+    @DrawableRes
     protected int pressedDrawable;
 
     @DrawableRes
     protected int drawable;
 
     //默认背景色
+    @ColorInt
     protected int defaultColor;
     //点击背景色
+    @ColorInt
     protected int pressedColor;
 
     //网络下载bitmap
     protected Bitmap mBitmap;
-
 
     public Shape(@NonNull Context context) {
         this(context, null);
@@ -91,7 +98,7 @@ public class Shape extends FrameLayout {
 
         setDrawingCacheEnabled(true);
         setLayerType(LAYER_TYPE_SOFTWARE, null);
-
+        setClickable(true);
         porterDuffXfermode = new PorterDuffXfermode(PorterDuff.Mode.DST_IN);
         setWillNotDraw(false);
     }
@@ -156,6 +163,9 @@ public class Shape extends FrameLayout {
                 break;
             case MotionEvent.ACTION_UP:
                 touchUp();
+                if (onShapeClickListener != null) {
+                    onShapeClickListener.onClick(this);
+                }
                 break;
             case MotionEvent.ACTION_CANCEL:
                 touchUp();
@@ -168,7 +178,6 @@ public class Shape extends FrameLayout {
         if (defaultDrawable != 0) {
             drawable = defaultDrawable;
             invalidate();
-
         } else if (defaultColor != 0) {
             setBackgroundColor(defaultColor);
         }
@@ -192,5 +201,13 @@ public class Shape extends FrameLayout {
 
     public void reDraw() {
         invalidate();
+    }
+
+    public void setOnShapeClickListener(Shape.onShapeClickListener onShapeClickListener) {
+        this.onShapeClickListener = onShapeClickListener;
+    }
+
+    public interface onShapeClickListener {
+        void onClick(View v);
     }
 }

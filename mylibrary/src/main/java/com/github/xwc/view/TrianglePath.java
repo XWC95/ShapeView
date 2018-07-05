@@ -2,18 +2,22 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
+import com.github.xwc.compiler.ShapeType;
+
 import static com.github.xwc.view.ShapeView.TRIANGLE;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(TRIANGLE)
+@ShapeType(value = TRIANGLE, superClass = IClipPath.class)
 public class TrianglePath implements IClipPath {
 
     private ShapeView shapeView;
 
-    public TrianglePath(ShapeView shapeView) {
-        this.shapeView = shapeView;
+    public TrianglePath(Object... objects) {
+        if (objects[0] instanceof ShapeView) {
+            this.shapeView = (ShapeView) objects[0];
+        }
     }
 
     @Override

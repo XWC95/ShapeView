@@ -3,12 +3,13 @@ package com.github.xwc.view;
 import android.graphics.Path;
 import android.graphics.RectF;
 
+import com.github.xwc.compiler.ShapeType;
+
 import static com.github.xwc.view.ButtonShapeView.ROUND_RECT;
 
 /**
  * Created by xwc on 2018/7/4.
  */
-@ShapeType(ROUND_RECT)
 public class RoundRectPath implements IClipPath {
 
     private ButtonShapeView buttonShapeView;

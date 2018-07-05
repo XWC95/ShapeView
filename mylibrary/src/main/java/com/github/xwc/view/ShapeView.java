@@ -41,7 +41,7 @@ public class ShapeView extends Shape {
      */
     public static final int DIAGONAL = 6;
 
-    //default CIRCLE
+    //Default is CIRCLE
     protected int shapeType;
 
     private float percentBottom = 0.5f;
@@ -52,7 +52,7 @@ public class ShapeView extends Shape {
     private float heartYPercent = 0.16f;
 
     private int sides = 4;
-    private float turn = 0f; // Turn 0 °
+    private float turn = 0f; // 旋转角度
 
     //diagonal
     public static final int POSITION_BOTTOM = 1;
@@ -116,29 +116,8 @@ public class ShapeView extends Shape {
             @Override
             public Path createClipPath(int width, int height) {
                 final Path path = new Path();
-
-                if(shapeType == CIRCLE){
-                    clipPath = new CirclePath();
-
-                }else if(shapeType ==TRIANGLE){
-                    clipPath = new TrianglePath(ShapeView.this);
-
-                }else if(shapeType == HEART){
-                    clipPath = new HeartPath(ShapeView.this);
-
-                }else if(shapeType == POLYGON){
-                    clipPath = new PolygonPath(ShapeView.this);
-
-                }else if(shapeType == STAR){
-                    clipPath = new StarPath(ShapeView.this);
-
-                }else if(shapeType == DIAGONAL){
-                    clipPath = new DiagonalPath(ShapeView.this);
-                }
+                clipPath =  IClipPathFactory.create(shapeType,ShapeView.this);
                 clipPath.setClipPath(path,width,height);
-
-//                clipPath = CallClipPathFactory.getInstance().createCalPrice(shapeType);
-
                 return path;
             }
         });
@@ -257,5 +236,13 @@ public class ShapeView extends Shape {
 
     public void setDiagonalAngle(int diagonalAngle) {
         this.diagonalAngle = diagonalAngle;
+    }
+
+    public int getShapeType() {
+        return shapeType;
+    }
+
+    public void setShapeType(int shapeType) {
+        this.shapeType = shapeType;
     }
 }
