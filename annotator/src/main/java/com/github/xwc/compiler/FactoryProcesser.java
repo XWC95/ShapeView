@@ -28,10 +28,6 @@ import javax.tools.Diagnostic;
 /**
  * 工厂注解解析处理器
  *
- * @author Chen Xiaoping (562818444@qq.com)
- * @version AnnotationDemo
- * @Datetime 2017-08-18 17:14
- * @since AnnotationDemo
  */
 
 @AutoService(Processor.class)

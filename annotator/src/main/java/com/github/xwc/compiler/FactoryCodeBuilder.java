@@ -71,9 +71,9 @@ public class FactoryCodeBuilder {
         MethodSpec.Builder method =
             MethodSpec.methodBuilder("create") //设置方法名字
                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC) //设置方法类型为public static
-                .addParameter(int.class, "type") //设置参数int id
+                .addParameter(int.class, "type") //设置参数
                 .addParameter(Object.class, "shape")
-                .returns(TypeName.get(superClassName.asType())); //设置返回IFruit
+                .returns(TypeName.get(superClassName.asType())); //设置返回
 
         method.beginControlFlow("if (type < 0)") //beginControlFlow与endControlFlow要成对调用
             .addStatement("throw new IllegalArgumentException($S)", "type is less then 0!")

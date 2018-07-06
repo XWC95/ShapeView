@@ -36,18 +36,13 @@ public class ExampleFragment3 extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        shapeView = view.findViewById(R.id.shapeView);
+        shapeView = view.findViewById(R.id.shapeView);
         buttonShape = view.findViewById(R.id.buttonShape);
 //
 //        addTextView(btnShapeView);
 //
-//        ImageLoader.loadImage(getContext(), mImageUrl, shapeView, dp2px(150), dp2px(150));
-//        btnShapeView.setClickListener(new com.github.xwc.view.Shape.ClickListener() {
-//            @Override
-//            public void onClick(View var1) {
-//                Toast.makeText(getActivity(),"点击",Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        ImageLoader.loadImage(getContext(), mImageUrl, shapeView, dp2px(150), dp2px(150));
+
 
         buttonShape.setOnShapeClickListener(v -> {
             Toast.makeText(getActivity(), "1", Toast.LENGTH_SHORT).show();
@@ -55,14 +50,6 @@ public class ExampleFragment3 extends Fragment {
 
     }
 
-    private void addTextView(ShapeView view) {
-        TextView textView = new TextView(getActivity());
-        textView.setText("addTextView");
-        textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.parseColor("#87CEEB"));
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-        view.addView(textView,FrameLayout.LayoutParams.MATCH_PARENT,FrameLayout.LayoutParams.MATCH_PARENT);
-    }
 
     public  int dp2px(float dipValue) {
         final float scale =  getActivity().getResources().getDisplayMetrics().density;

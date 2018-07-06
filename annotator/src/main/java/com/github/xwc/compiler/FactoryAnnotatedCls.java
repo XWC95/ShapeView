@@ -4,6 +4,10 @@ import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.MirroredTypeException;
 
+/**
+ * 被注解标记的类属性
+ *
+ */
 public class FactoryAnnotatedCls {
     private TypeElement mAnnotatedClsElement;
 

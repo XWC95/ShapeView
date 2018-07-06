@@ -12,7 +12,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="5dp"
         app:shape_borderWidth="1dp"
-        app:shape_default_color="#3F51B5"
+        app:shape_default_color="#000000"
         app:shape_pressed_color="#FFFFFF"
         app:shape_roundRect_radius="30dp">
 
@@ -47,18 +47,18 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             app:shape_borderWidth="3dp"
-            app:shape_default_drawable="@mipmap/image1"
+            app:shape_default_drawable="@mipmap/shapeimage"
             app:shape_type="circle">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:text="shape_drawable属性\n加载图片"
-                android:textColor="#87CEEB"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:gravity="center"-->
+                <!--android:text="shape_drawable属性\n加载图片"-->
+                <!--android:textColor="#87CEEB"-->
+                <!--android:textSize="15sp"-->
+                <!--android:textStyle="bold" />-->
 
         </com.github.xwc.view.ShapeView>
 
