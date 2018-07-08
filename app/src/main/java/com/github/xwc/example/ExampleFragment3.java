@@ -21,7 +21,7 @@ import com.github.xwc.view.ShapeView;
 
 public class ExampleFragment3 extends Fragment {
 
-    private String mImageUrl = "https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=2399593750,1890890896&fm=27&gp=0.jpg";
+    private String mImageUrl = "http://img2.touxiang.cn/file/20180702/935b17caee683ffc695f99f9d29d4dae.jpg";
 
     private ShapeView shapeView;
 
@@ -38,9 +38,7 @@ public class ExampleFragment3 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         shapeView = view.findViewById(R.id.shapeView);
         buttonShape = view.findViewById(R.id.buttonShape);
-//
-//        addTextView(btnShapeView);
-//
+
         ImageLoader.loadImage(getContext(), mImageUrl, shapeView, dp2px(150), dp2px(150));
 
 

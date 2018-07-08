@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
 android {
     compileSdkVersion 27
 
@@ -21,8 +22,26 @@ android {
         }
     }
 
+    lintOptions {
+        abortOnError false
+    }
 }
 
+//椤圭洰涓婚〉
+def siteUrl = 'https://github.com/xwc520/ShapeView'
+publish{
+    repoName = 'AndroidLibrary'
+    userOrg = 'xwc'
+    groupId = 'com.github.xwc'
+    artifactId = 'ShapeView'
+    publishVersion = '1.2.5'
+    website = siteUrl
+}
+tasks.withType(Javadoc) {//闃叉缂栫爜闂
+    options.addStringOption('Xdoclint:none', '-quiet')
+    options.addStringOption('encoding', 'UTF-8')
+    options.addStringOption('charSet', 'UTF-8')
+}
 
 
 dependencies {

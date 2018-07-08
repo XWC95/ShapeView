@@ -87,13 +87,13 @@
         <!--虚线宽度-->
         <attr name="shape_borderDashWidth" format="dimension" />
         <!-- 默认背景图-->
-        <attr name="shape_default_drawable" format="reference" />
+        <attr name="shape_defaultBgd" format="reference" />
         <!--点击时背景图-->
-        <attr name="shape_pressed_drawable" format="reference" />
+        <attr name="shape_pressedBgd" format="reference" />
         <!--点击时背景色-->
-        <attr name="shape_pressed_color" format="color" />
+        <attr name="shape_pressedColor" format="color" />
         <!--默认背景色-->
-        <attr name="shape_default_color" format="color" />
+        <attr name="shape_defaultColor" format="color" />
     </declare-styleable>
 
 </resources>

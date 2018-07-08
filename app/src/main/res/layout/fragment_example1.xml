@@ -18,21 +18,17 @@
             app:shape_borderWidth="3dp"
             app:shape_heart_YPercent="0.16"
             app:shape_heart_radian="0.2"
+            app:shape_defaultBgd="@mipmap/shapeimage"
             app:shape_type="heart">
 
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@mipmap/image4" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
 
@@ -51,114 +47,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@mipmap/image1" />
+                android:src="@mipmap/shapeimage" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:textStyle="bold" />
 
-        </com.github.xwc.view.ShapeView>
-
-        <!--<com.github.xwc.view.ShapeView-->
-            <!--android:id="@+id/roundRectShapeView"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--app:shape_borderWidth="3dp"-->
-            <!--app:shape_roundRect_radius="20dp"-->
-            <!--app:shape_type="roundRect">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:src="@mipmap/image2" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:text="ShapeView"-->
-                <!--android:textColor="#87CEEB"-->
-                <!--android:textSize="18sp"-->
-                <!--android:textStyle="bold" />-->
-
-        <!--</com.github.xwc.view.ShapeView>-->
-
-        <!--<com.github.xwc.view.ShapeView-->
-            <!--android:id="@+id/roundRectShapeView2"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--app:shape_roundRect_bottomRightRadius="20dp"-->
-            <!--app:shape_roundRect_topLeftRadius="20dp"-->
-            <!--app:shape_type="roundRect">-->
-
-            <!--<ImageView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:scaleType="centerCrop"-->
-                <!--android:src="@mipmap/image2" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:text="ShapeView"-->
-                <!--android:textColor="#87CEEB"-->
-                <!--android:textSize="18sp"-->
-                <!--android:textStyle="bold" />-->
-
-        <!--</com.github.xwc.view.ShapeView>-->
-
-        <com.github.xwc.view.ShapeView
-            android:id="@+id/triangleShapeView"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginTop="10dp"
-            app:shape_type="triangle">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/image3" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
-                android:textStyle="bold" />
         </com.github.xwc.view.ShapeView>
 
         <com.github.xwc.view.ShapeView
-            android:id="@+id/triangleShapeView2"
+            android:id="@+id/starShapeView2"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="10dp"
-            app:shape_default_drawable="@mipmap/image3"
-            app:shape_triangle_percentBottom="1"
-            app:shape_triangle_percentLeft="0.5"
-            app:shape_triangle_percentRight="0"
-            app:shape_type="triangle">
+            android:padding="3dp"
+            app:shape_borderWidth="3dp"
+            app:shape_defaultBgd="@mipmap/shapeimage"
+            app:shape_type="star">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="ShapeView"
-                android:textColor="#87CEEB"
-                android:textSize="18sp"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
                 android:textStyle="bold" />
         </com.github.xwc.view.ShapeView>
+
 
     </LinearLayout>
 </android.support.v4.widget.NestedScrollView>

@@ -51,7 +51,7 @@ public class Shape extends FrameLayout {
     private ClipHelper clipHelper;
 
     protected int borderWidthPx;
-    protected int borderColor = Color.parseColor("#F66276");
+    protected int borderColor = Color.RED;
     protected int borderDashGap;
     protected int borderDashWidth;
 
@@ -96,10 +96,11 @@ public class Shape extends FrameLayout {
         borderColor = typedArray.getColor(R.styleable.Shape_shape_borderColor, borderColor);
         borderDashGap = typedArray.getDimensionPixelSize(R.styleable.Shape_shape_borderDashGap, borderDashGap);
         borderDashWidth = typedArray.getDimensionPixelSize(R.styleable.Shape_shape_borderDashWidth, borderDashGap);
-        defaultDrawable = typedArray.getResourceId(R.styleable.Shape_shape_default_drawable, defaultDrawable);
-        pressedDrawable = typedArray.getResourceId(R.styleable.Shape_shape_pressed_drawable, pressedDrawable);
-        pressedColor = typedArray.getColor(R.styleable.Shape_shape_pressed_color, pressedColor);
-        defaultColor = typedArray.getColor(R.styleable.Shape_shape_default_color, defaultColor);
+        defaultDrawable = typedArray.getResourceId(R.styleable.Shape_shape_defaultBgd, defaultDrawable);
+        drawable = defaultDrawable;
+        pressedDrawable = typedArray.getResourceId(R.styleable.Shape_shape_pressedBgd, pressedDrawable);
+        pressedColor = typedArray.getColor(R.styleable.Shape_shape_pressedColor, pressedColor);
+        defaultColor = typedArray.getColor(R.styleable.Shape_shape_defaultColor, defaultColor);
 
         typedArray.recycle();
 
@@ -121,9 +122,7 @@ public class Shape extends FrameLayout {
     @SuppressLint("DrawAllocation")
     @Override
     protected void onDraw(Canvas canvas) {
-        if (drawable == 0) {
-            drawable = defaultDrawable;
-        }
+
         if (drawable != 0) {
             Bitmap bitmap = Bitmap.createScaledBitmap(BitmapFactory.decodeResource(getResources(), drawable), getMeasuredWidth(), getMeasuredHeight(), false);
             canvas.drawBitmap(bitmap, 0, 0, new Paint());
