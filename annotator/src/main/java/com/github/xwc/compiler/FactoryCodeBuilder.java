@@ -69,24 +69,24 @@ public class FactoryCodeBuilder {
     private MethodSpec newCreateMethod(Elements elementUtils, TypeElement superClassName) {
 
         MethodSpec.Builder method =
-            MethodSpec.methodBuilder("create") //设置方法名字
-                .addModifiers(Modifier.PUBLIC, Modifier.STATIC) //设置方法类型为public static
-                .addParameter(int.class, "type") //设置参数
+            MethodSpec.methodBuilder("create")
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .addParameter(int.class, "type")
                 .addParameter(Object.class, "shape")
-                .returns(TypeName.get(superClassName.asType())); //设置返回
+                .returns(TypeName.get(superClassName.asType()));
 
-        method.beginControlFlow("if (type < 0)") //beginControlFlow与endControlFlow要成对调用
+        method.beginControlFlow("if (type < 0)")
             .addStatement("throw new IllegalArgumentException($S)", "type is less then 0!")
             .endControlFlow();
 
-        for (FactoryAnnotatedCls annotatedCls : mAnnotatedClasses.values()) { //遍历所有保存起来的被注解的生产线类
+        for (FactoryAnnotatedCls annotatedCls : mAnnotatedClasses.values()) {
             String packName = elementUtils
                 .getPackageOf(annotatedCls.getAnnotatedClsElement())
-                .getQualifiedName().toString(); //获取生产线类的包名全路径
-            String clsName = annotatedCls.getAnnotatedClsElement().getSimpleName().toString(); //获取生产线类名字
-            ClassName cls = ClassName.get(packName, clsName); //组装成一个ClassName
+                .getQualifiedName().toString();
+            String clsName = annotatedCls.getAnnotatedClsElement().getSimpleName().toString();
+            ClassName cls = ClassName.get(packName, clsName);
 
-            //将该生产线类的所有id组成数组
+
             int type = annotatedCls.getType();
 
             // CirclePath是不需要在构造方法中传递参数的所以这里检测一下

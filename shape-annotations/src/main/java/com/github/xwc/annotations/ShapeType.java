@@ -1,4 +1,4 @@
-package com.github.xwc.compiler;
+package com.github.xwc.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

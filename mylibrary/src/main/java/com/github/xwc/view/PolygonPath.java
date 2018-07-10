@@ -18,9 +18,8 @@ package com.github.xwc.view;
 import android.graphics.Path;
 import android.graphics.RectF;
 
-import com.github.xwc.compiler.ShapeType;
+import com.github.xwc.annotations.ShapeType;
 
-import static com.github.xwc.view.ShapeView.CIRCLE;
 import static com.github.xwc.view.ShapeView.POLYGON;
 
 /**

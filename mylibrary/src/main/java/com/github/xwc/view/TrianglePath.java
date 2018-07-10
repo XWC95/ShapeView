@@ -17,7 +17,7 @@ package com.github.xwc.view;
 
 import android.graphics.Path;
 
-import com.github.xwc.compiler.ShapeType;
+import com.github.xwc.annotations.ShapeType;
 
 import static com.github.xwc.view.ShapeView.TRIANGLE;
 

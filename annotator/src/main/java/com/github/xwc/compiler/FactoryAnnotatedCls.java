@@ -1,12 +1,13 @@
 package com.github.xwc.compiler;
 
+import com.github.xwc.annotations.ShapeType;
+
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.type.DeclaredType;
 import javax.lang.model.type.MirroredTypeException;
 
 /**
  * 被注解标记的类属性
- *
  */
 public class FactoryAnnotatedCls {
     private TypeElement mAnnotatedClsElement;
@@ -33,10 +34,10 @@ public class FactoryAnnotatedCls {
             mSupperClsSimpleName = classTypeElement.getSimpleName().toString();
         }
 
-        if (mSupperClsSimpleName == null || mSupperClsSimpleName .equals("")  ) {
+        if (mSupperClsSimpleName == null || mSupperClsSimpleName.equals("")) {
             throw new ProcessingException(classElement,
-                "superClass() in @%s for class %s is null or empty! that's not allowed",
-                ShapeType.class.getSimpleName(), classElement.getQualifiedName().toString());
+                    "superClass() in @%s for class %s is null or empty! that's not allowed",
+                    ShapeType.class.getSimpleName(), classElement.getQualifiedName().toString());
         }
     }
 

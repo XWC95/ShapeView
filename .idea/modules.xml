@@ -2,14 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/ShapView.iml" filepath="$PROJECT_DIR$/ShapView.iml" />
       <module fileurl="file://$PROJECT_DIR$/ShapeView.iml" filepath="$PROJECT_DIR$/ShapeView.iml" />
       <module fileurl="file://$PROJECT_DIR$/annotator/annotator.iml" filepath="$PROJECT_DIR$/annotator/annotator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/annotator/annotator.iml" filepath="$PROJECT_DIR$/annotator/annotator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/shape-annotations/shape-annotations.iml" filepath="$PROJECT_DIR$/shape-annotations/shape-annotations.iml" />
     </modules>
   </component>
 </project>

@@ -84,7 +84,7 @@
             android:layout_height="150dp"
             android:layout_marginLeft="10dp"
             app:shape_borderWidth="3dp"
-            app:shape_defaultBgd="@mipmap/ic_launcher"
+            app:shape_defaultBgd="@mipmap/shapeimage"
             app:shape_type="circle">
 
             <TextView

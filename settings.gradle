@@ -1,1 +1,1 @@
-include ':app', ':mylibrary', ':annotator'
+include ':app', ':mylibrary', ':annotator', ':shape-annotations'
