@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = findViewById(R.id.tablayout);
 
         list = new ArrayList<>();
-        list.add(new ExampleFragment(R.layout.fragment_example1) );
-        list.add(new ExampleFragment(R.layout.fragment_example2));
+        list.add(new ExampleFragment() );
+        list.add(new ExampleFragment2());
         list.add(new ExampleFragment3());
         adapter = new MyAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
