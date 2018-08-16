@@ -18,7 +18,7 @@ Gradle
 -------
 
 ```
-compile 'com.github.xwc:ShapeView:1.2.7'
+compile 'com.github.xwc:ShapeView:1.2.8'
 annotationProcessor 'com.github.xwc:ShapeView-compiler:1.2.5'
 
 ```

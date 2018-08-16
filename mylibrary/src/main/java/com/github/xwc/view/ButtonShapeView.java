@@ -43,7 +43,7 @@ public class ButtonShapeView extends Shape {
     private int bottomRightRadius;
     private int bottomLeftRadius;
 
-    private float[] roundedCorners;
+    private float[] roundedCorners = new float[8];
 
     boolean firstDispatchDraw = true;
 
@@ -112,6 +112,7 @@ public class ButtonShapeView extends Shape {
             canvas.drawPath(getClipHelper().mPath, borderPaint);
         }
     }
+
 
     public int getRadius() {
         return radius;

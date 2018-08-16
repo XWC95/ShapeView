@@ -35,10 +35,8 @@ public class RoundRectPath implements IClipPath {
         int borderWidthPx = buttonShapeView.borderWidthPx;
         rectF.set(borderWidthPx, borderWidthPx, width - borderWidthPx, height - borderWidthPx);
 
-        if (rectF.width() < width && rectF.height() < height) {
-            if(buttonShapeView.getRoundedCorners() != null){
-                path.addRoundRect(rectF, buttonShapeView.getRoundedCorners(), Path.Direction.CW);
-            }
+        if (rectF.width() <= width && rectF.height() <= height) {
+            path.addRoundRect(rectF, buttonShapeView.getRoundedCorners(), Path.Direction.CW);
         }
     }
 }
